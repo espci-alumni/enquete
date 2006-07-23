@@ -1,0 +1,36 @@
+<!-- AGENT 'header' title="Envoyer l'enquête par email" -->
+<!-- AGENT $form -->
+
+<fieldset style="width:95%"><legend>Modèle d'email</legend>
+<table width="100%">
+<!-- AGENT $f_subject _caption_="Sujet" _format_='<tr><td>%0 :</td><td>%1%2</td></tr>' size=65 style='width:450px' -->
+<!-- AGENT $f_template _caption_="Message d'invitation" _format_='<tr><td>%0 :</td><td>%1%2</td></tr>' rows=15 cols=50  style='width:450px;height:350px' -->
+</table>
+<div align="right"><!-- AGENT $f_send value="Envoyer" onclick='return send()' --></div>
+</fieldset>
+
+<script type="text/javascript">/*<![CDATA[*/
+
+f = document.forms[0];
+from = opener.fromSubmit;
+ffrom = from.form;
+
+f.f_subject.value = ffrom.f_subject.value;
+f.f_template.value = ffrom.f_template.value;
+
+function send()
+{
+	ffrom.f_subject.value = f.f_subject.value;
+	ffrom.f_template.value = f.f_template.value;
+
+	from.confirmed = 1;
+	from.click();
+
+	window.close();
+
+	return false;
+}
+
+//]]></script>
+<!-- AGENT $form _mode_='close' -->
+<!-- AGENT 'footer' -->

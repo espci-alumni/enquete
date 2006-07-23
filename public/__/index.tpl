@@ -1,0 +1,19 @@
+<!-- AGENT 'header' title = 'Acceuil des enquetes' -->
+
+<h1>Récapitulatif des enquêtes</h1>
+<br />
+Cette page recense les différentes enquêtes en cours.<br />
+<blockquote>
+<br />
+<br />
+<hr width="50%">
+<!-- LOOP $ENQUETE -->
+<b>Enquete :</b>{$enquete}<br />
+<b>Etat de l'enquete :</b>{$etat_enquete}<br />
+<b>Description :</b>{$description}<br />
+<br />
+<hr width="50%">
+<!-- END:LOOP -->
+<blockquote>
+
+<!-- AGENT 'footer' -->
