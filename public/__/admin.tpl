@@ -29,8 +29,8 @@
 	<th>Prénom</th>
 	<th>Email</th>
 	<th>
-		<!-- IF !g$order_by_date --><a href="{~}{g$__AGENT__}{g$__1__}?order_by_date=1">Date d'envoi</a>
-		<!-- ELSE --><i>Date d'envoi</i>
+		<!-- IF !g$order_by_date --><a href="{~}{g$__AGENT__}{g$__1__}?order_by_date=1">Dernier mouvement</a>
+		<!-- ELSE --><i>Dernier mouvement</i>
 		<!-- END:IF -->
 	</th>
 	<th></th>
@@ -65,7 +65,7 @@
 	<td>{$prenom}</td>
 	<!-- END:IF -->
 	<td>{$email}</td>
-	<td>{$date_envoi}</td>
+	<td>{$mtime}</td>
 	<td>
 		<img src="{~}img/{$statut}.gif" title="{$statut}">
 		<!-- IF $bounced --><img src="{~}img/bounce.gif" title="Email en erreur"><!-- END:IF -->
@@ -78,7 +78,9 @@
 </table>
 </div>
 <!-- IF $USER -->
-<img src="{~}img/arrow_ltr.png" /> <!-- AGENT $f_relancer value="Envoyer à nouveau" onclick='return openSendbox(this)' -->
+<img src="{~}img/arrow_ltr.png" />
+<!-- AGENT $f_relancer value="Envoyer à nouveau" onclick='return openSendbox(this)' -->
+<!-- AGENT $f_delete value="Supprimer" onclick="return confirm('Êtes-vous sur de vouloir cette suppression ?')" -->
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="{~}img/envoye.gif" /> Envoyé
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="{~}img/ouvert.gif" /> Ouvert
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="{~}img/enregistre.gif" /> Enregistré

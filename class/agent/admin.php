@@ -29,8 +29,8 @@ class extends agent
 			WHERE enquete='{$this->enquete->enquete}'
 			ORDER BY " . (
 				$this->argv->order_by_date
-				? 'date_envoi DESC,promo,nom,prenom'
-				: 'promo,nom,prenom,date_envoi DESC'
+				? 'mtime DESC,promo,nom,prenom'
+				: 'promo,nom,prenom,mtime DESC'
 			);
 		$o->USER = new loop_sql($sql, array($this, 'filterUser'));
 
@@ -39,6 +39,7 @@ class extends agent
 
 		$save = $form->add('submit', 'save');
 		$relancer = $form->add('submit', 'relancer');
+		$delete = $form->add('submit', 'delete');
 		$save_list = $form->add('submit', 'save_list');
 
 		$form->add('text', 'subject', array('default' => $o->subject));
@@ -97,6 +98,33 @@ class extends agent
 					));
 				}
 			}
+
+			CIA::redirect();
+		}
+
+		if ($delete->isOn())
+		{
+			$user = (array) @$_POST['relance'];
+			foreach ($user as &$user)
+			{
+				$sql = 'DELETE FROM admin_user WHERE user_key="' . addslashes($user) . '" AND statut!="enregistre"';
+				$db->exec($sql);
+			}
+
+			$sql = "CREATE TEMPORARY TABLE purgeme
+				SELECT u1.user_key FROM admin_user u1, admin_user u2
+				WHERE u2.statut='enregistre'
+					AND u1.result_id=u2.result_id
+					AND u1.user_key!=u2.user_key
+					AND u1.enquete='{$o->enquete}'
+					AND u2.enquete='{$o->enquete}'";
+			$db->exec($sql);
+
+			$sql = "DELETE FROM admin_user WHERE user_key IN (SELECT user_key FROM purgeme)";
+			$db->exec($sql);
+
+			$sql = "DELETE FROM enquete_{$o->enquete} e WHERE e.result_id NOT IN (SELECT u.result_id FROM admin_user u WHERE u.enquete='{$o->enquete}')";
+			$db->exec($sql);
 
 			CIA::redirect();
 		}
