@@ -58,6 +58,7 @@ class extends agent_admin
 						'nom' => $user->nom,
 						'prenom' => $user->prenom,
 						'email' => $user->email,
+						'source_key' => $user->source_key,
 					));
 				}
 			}
