@@ -3,10 +3,8 @@
 $dsn = PCORG::dsn();
 $dsn['database'] = 'enquete';
 
-$CONFIG += array(			// Config parameters
+$CONFIG = array(
 
 	'DSN' => $dsn,
 
 );
-
-CIA(__FILE__);
