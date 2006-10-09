@@ -6,7 +6,7 @@ class enquete_situation extends enquete
 	{
 		$form->add('textarea', 'adresse');
 		$form->add('check', 'actif', array(
-			'item' => array('oui' => 'oui', 'non' => 'non')
+			'item' => array('oui' => 'oui', 'non' => 'non', 'idem' => "ma situation n'a pas changé depuis la dernière enquête")
 		));
 
 		$form->add('date', 'date_debut');

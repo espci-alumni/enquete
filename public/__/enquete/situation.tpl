@@ -50,7 +50,8 @@ Si vous avez un problème, vous pouvez contacter le propriétaire de cette enque
 <h2>Situation actuelle</h2>
 <!-- AGENT $f_actif                _caption_="Avez-vous actuellement un emploi ?" _glue_='&nbsp;' _format_='%0&nbsp;%1%2' --><br />
 <br />
-Si oui, pouvez-vous répondre aux questions suivantes ?
+Si oui, pouvez-vous répondre aux questions suivantes ?<br />
+Si votre situation n'a pas changé depuis la dernière enquête, vous pouvez valider le formulaire.
 
 <!-- SET $inputWithDetails --><tr><td rowspan="2">%0&nbsp;:</td><td>%1%2</td></tr><!-- END:SET -->
 
