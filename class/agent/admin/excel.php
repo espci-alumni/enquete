@@ -16,6 +16,7 @@ class extends agent_admin
 		$enquete = $this->enquete->enquete;
 
 		$workbook = new Spreadsheet_Excel_Writer();
+		$workbook->setVersion(8);
 		$workbook->send("enquete_{$enquete}.xls");
 		$worksheet = $workbook->addWorksheet('Resultats');
 		$worksheet->setInputEncoding('UTF-8');
