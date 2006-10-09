@@ -25,7 +25,7 @@ class extends agent_admin
 
 		$sql = "SHOW COLUMNS FROM enquete_{$enquete}";
 		$entete = new loop_sql($sql);
-		for ($i = 0; $a = $entete->loop(); ++$i) $worksheet->write(0, $i, $a->Field, $format);
+		for ($i = 0; $a = $entete->loop(); ++$i) $worksheet->writeString(0, $i, $a->Field, $format);
 
 		$sql = "SELECT * FROM enquete_{$enquete}
 			WHERE result_id IN (SELECT result_id FROM admin_user WHERE statut='enregistre')";
@@ -35,7 +35,7 @@ class extends agent_admin
 			$j = 0;
 			foreach ($a as &$value)
 			{
-				$worksheet->write($i, $j, $value);
+				$worksheet->writeString($i, $j, $value);
 				++$j;
 			}
 		}
