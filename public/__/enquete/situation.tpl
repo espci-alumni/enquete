@@ -48,7 +48,7 @@ Si vous avez un problème, vous pouvez contacter le propriétaire de cette enque
 <!-- AGENT $f_adresse              _caption_="Adresse(s) où l'on peut vous joindre" _format_='%0&nbsp;:<br />%1%2' rows=2 -->
 
 <h2>Situation actuelle</h2>
-<!-- AGENT $f_actif                _caption_="Avez-vous actuellement un emploi ?" _glue_='&nbsp;' _format_='%0&nbsp;%1%2' --><br />
+<!-- AGENT $f_actif                _caption_="Avez-vous actuellement un emploi ?" _glue_='&nbsp;' _format_='%0<br />%1%2' --><br />
 <br />
 Si oui, pouvez-vous répondre aux questions suivantes ?<br />
 Si votre situation n'a pas changé depuis la dernière enquête, vous pouvez valider le formulaire.
