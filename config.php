@@ -1,9 +1,9 @@
-<?php
+<?php #extends ../..
 
 $dsn = PCORG::dsn();
 $dsn['database'] = 'enquete';
 
-$CONFIG = array(
+$CONFIG += array(
 
 	'DSN' => $dsn,
 
