@@ -1,6 +1,6 @@
 <?php
 
-class enquete_situation extends enquete
+class extends enquete
 {
 	function setupForm($form, $save)
 	{

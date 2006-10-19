@@ -27,7 +27,7 @@ class extends agent_admin
 		for ($i = 0; $a = $entete->loop(); ++$i) $worksheet->write(0, $i, $a->Field, $format);
 
 		$sql = "SELECT * FROM enquete_{$enquete}
-			WHERE result_id IN (SELECT result_id FROM admin_user WHERE statut='enregistre')";
+			WHERE result_id IN (SELECT result_id FROM admin_user WHERE statut='enregistre' AND enquete='{$enquete}')";
 		$results = new loop_sql($sql);
 		for ($i = 1; $a = $results->loop(); ++$i)
 		{

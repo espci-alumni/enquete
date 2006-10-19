@@ -19,7 +19,7 @@ class extends agent_admin
 
 		$sql = "SELECT *
 			FROM admin_user u, enquete_{$enquete} e
-			WHERE u.result_id = e.result_id
+			WHERE u.result_id = e.result_id AND u.enquete='{$enquete}'
 			GROUP BY u.result_id
 			ORDER BY u.bounced, FIELD(u.statut, 'enregistre', 'ouvert', 'envoye')";
 		$o->USER = new loop_sql($sql, array($this, 'filterUser'));
@@ -45,9 +45,9 @@ class extends agent_admin
 			{
 				$sql = 'SELECT *
 					FROM admin_user
-					WHERE result_id=?
+					WHERE result_id=? AND enquete=?
 					ORDER BY bounced, FIELD(statut, "enregistre", "ouvert", "envoye")';
-				if ($user = $db->getRow($sql, null, array($user)))
+				if ($user = $db->getRow($sql, null, array($user, $enquete)))
 				{
 					$this->save(array(
 						'subject' => $data['subject'],

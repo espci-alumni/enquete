@@ -2,7 +2,7 @@
 
 set_time_limit(0);
 
-abstract class enquete
+abstract class
 {
 	public $isSaved = false;
 
