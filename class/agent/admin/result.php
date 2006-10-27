@@ -17,12 +17,23 @@ class extends agent_admin
 
 		$this->enteteLength = $o->ENTETE->getLength();
 
-		$sql = "SELECT *
+		if (self::perPage)
+		{
+			$sql = "SELECT COUNT(*) FROM admin_user WHERE enquete='{$enquete}' GROUP BY result_id";
+			$o->numPages = ceil($db->getOne($sql) / self::perPage);
+
+			$o->page = min($this->argv->p, $o->numPages) - 1;
+		}
+
+		$sql = "SELECT * FROM (
+			SELECT u.user_key, nom, prenom, promo, email, date_envoi, source_key, statut, bounced, hors_delai, mtime, e.*
 			FROM admin_user u, enquete_{$enquete} e
-			WHERE u.result_id = e.result_id AND u.enquete='{$enquete}'
-			GROUP BY u.result_id
-			ORDER BY u.bounced, FIELD(u.statut, 'enregistre', 'ouvert', 'envoye')";
-		$o->USER = new loop_sql($sql, array($this, 'filterUser'));
+			WHERE u.result_id = e.result_id
+			AND u.enquete = '{$enquete}'
+			ORDER BY FIELD(u.statut, 'enregistre', 'ouvert', 'envoye'), u.bounced
+		) r GROUP BY result_id
+		ORDER BY FIELD(statut, 'enregistre', 'ouvert', 'envoye'), bounced DESC, mtime DESC";
+		$o->USER = new loop_sql($sql, array($this, 'filterUser'), self::perPage * $o->page, self::perPage);
 
 		$form = $this->form = new iaForm($o);
 

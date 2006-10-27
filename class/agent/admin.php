@@ -2,10 +2,12 @@
 
 class extends agent
 {
-	public $argv = array('__1__', 'order_by_date:bool'); //pour spécifier l'enquete
+	public $argv = array('__1__', 'order_by_date:bool', 'p:int:2' => 1);
 
 	protected $enquete;
 	protected $form;
+
+	const perPage = 0;
 
 	function control()
 	{
@@ -24,6 +26,14 @@ class extends agent
 
 		$db = DB();
 
+		if (self::perPage)
+		{
+			$sql = "SELECT COUNT(*) FROM admin_user u WHERE enquete='{$this->enquete->enquete}'";
+			$o->numPages = ceil($db->getOne($sql) / self::perPage);
+
+			$o->page = min($this->argv->p, $o->numPages) - 1;
+		}
+
 		$sql = "SELECT *, IF(source_key!='', (SELECT CONCAT(prenom,' ',nom,' - ',promo) FROM admin_user WHERE user_key=u.source_key), '') AS source
 			FROM admin_user u
 			WHERE enquete='{$this->enquete->enquete}'
@@ -32,14 +42,13 @@ class extends agent
 				? 'mtime DESC,promo,nom,prenom'
 				: 'promo,nom,prenom,mtime DESC'
 			);
-		$o->USER = new loop_sql($sql, array($this, 'filterUser'));
+		$o->USER = new loop_sql($sql, array($this, 'filterUser'), self::perPage * ($o->page), self::perPage);
 
 
 		$form = $this->form = new iaForm($o);
 
 		$save = $form->add('submit', 'save');
 		$relancer = $form->add('submit', 'relancer');
-		$delete = $form->add('submit', 'delete');
 		$save_list = $form->add('submit', 'save_list');
 
 		$form->add('text', 'subject', array('default' => $o->subject));
@@ -99,33 +108,6 @@ class extends agent
 					));
 				}
 			}
-
-			CIA::redirect();
-		}
-
-		if ($delete->isOn())
-		{
-			$user = (array) @$_POST['relance'];
-			foreach ($user as &$user)
-			{
-				$sql = 'DELETE FROM admin_user WHERE user_key="' . addslashes($user) . '" AND statut!="enregistre"';
-				$db->exec($sql);
-			}
-
-			$sql = "CREATE TEMPORARY TABLE purgeme
-				SELECT u1.user_key FROM admin_user u1, admin_user u2
-				WHERE u2.statut='enregistre'
-					AND u1.result_id=u2.result_id
-					AND u1.user_key!=u2.user_key
-					AND u1.enquete='{$o->enquete}'
-					AND u2.enquete='{$o->enquete}'";
-			$db->exec($sql);
-
-			$sql = "DELETE FROM admin_user WHERE user_key IN (SELECT user_key FROM purgeme)";
-			$db->exec($sql);
-
-			$sql = "DELETE FROM enquete_{$o->enquete} e WHERE e.result_id NOT IN (SELECT u.result_id FROM admin_user u WHERE u.enquete='{$o->enquete}')";
-			$db->exec($sql);
 
 			CIA::redirect();
 		}

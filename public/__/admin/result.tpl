@@ -9,7 +9,7 @@
 </fieldset>
 
 <fieldset><legend>Résultats de l'enquête (<a href="{~}admin/excel/{$owner_key}">export Excel</a>)</legend>
-<div style="height:300px;overflow:auto;width:100%">
+<div>
 <table>
 <tr>
 	<th></th>

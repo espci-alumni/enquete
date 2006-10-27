@@ -16,7 +16,7 @@
 	<!-- END:IF -->
 </legend>
 
-<div style="height:300px;overflow:auto">
+<div>
 <table cellspacing='0' cellpadding='0'>
 <tr>
 	<th></th>
@@ -55,7 +55,7 @@
 <!-- END:IF -->
 <!-- LOOP $USER -->
 <!-- SET $ligneRef -->{$promo}-{$nom}-{$prenom}<!-- END:SET -->
-<tr style="background-color:{'color'|cycle:'C4DAFB':'FFFFFF'}">
+<tr style="background-color:#{'color'|cycle:'C4DAFB':'FFFFFF'}">
 	<td><!-- AGENT $f_relance --></td>
 	<!-- IF $ligneRef == a$previousLigneRef -->
 	<td colspan="3"></td>
@@ -80,7 +80,6 @@
 <!-- IF $USER -->
 <img src="{~}img/arrow_ltr.png" />
 <!-- AGENT $f_relancer value="Envoyer à nouveau" onclick='return openSendbox(this)' -->
-<!-- AGENT $f_delete value="Supprimer" onclick="return confirm('Êtes-vous sur de vouloir cette suppression ?')" -->
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="{~}img/envoye.gif" /> Envoyé
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="{~}img/ouvert.gif" /> Ouvert
 &nbsp;&nbsp;&nbsp;&nbsp;<img src="{~}img/enregistre.gif" /> Enregistré
