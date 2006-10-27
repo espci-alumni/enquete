@@ -8,9 +8,9 @@ Cette page recense les différentes enquêtes en cours.<br />
 <br />
 <hr width="50%">
 <!-- LOOP $ENQUETE -->
-<b>Enquete :</b>{$enquete}<br />
-<b>Etat de l'enquete :</b>{$etat_enquete}<br />
-<b>Description :</b>{$description}<br />
+<b>Enquete :</b> {$enquete}<br />
+<b>Etat de l'enquete :</b> {$etat_enquete}<br />
+<b>Description :</b> {$description}<br />
 <br />
 <hr width="50%">
 <!-- END:LOOP -->
