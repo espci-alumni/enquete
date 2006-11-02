@@ -33,6 +33,7 @@ class extends agent
 
 			$o->page = min($this->argv->p, $o->numPages) - 1;
 		}
+		else $o->page = 0;
 
 		$sql = "SELECT *, IF(source_key!='', (SELECT CONCAT(prenom,' ',nom,' - ',promo) FROM admin_user WHERE user_key=u.source_key), '') AS source
 			FROM admin_user u

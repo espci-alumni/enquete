@@ -24,6 +24,7 @@ class extends agent_admin
 
 			$o->page = min($this->argv->p, $o->numPages) - 1;
 		}
+		else $o->page = 0;
 
 		$sql = "SELECT * FROM (
 			SELECT u.user_key, nom, prenom, promo, email, date_envoi, source_key, statut, bounced, hors_delai, mtime, e.*
