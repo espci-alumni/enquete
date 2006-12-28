@@ -1,5 +1,5 @@
 <!-- AGENT 'header' title = 'Administration des enquêtes' -->
-<script type="text/javascript" src="{~}js/admin"></script>
+<script type="text/javascript" src="{~}js/admin"></script >
 
 <h1>Enquête {a$enquete}</h1>
 

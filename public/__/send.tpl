@@ -31,6 +31,6 @@ function send()
 	return false;
 }
 
-//]]></script>
+//]]></script >
 <!-- AGENT $form _mode_='close' -->
 <!-- AGENT 'footer' -->
