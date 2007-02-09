@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Spreadsheet/Excel/Writer.php';
-
 class extends agent_admin
 {
 	const binary = true;
@@ -52,7 +50,7 @@ class extends agent_admin
 	function format($value)
 	{
 		$value = mb_convert_encoding($value, 'ISO-8859-1');
-		$value = str_replace(array("\r\n", "\r"), array("\n", "\n"), $value);
+		$value = strtr(str_replace("\r\n", "\n", $value), "\r", "\n");
 		return $value;
 	}
 }
