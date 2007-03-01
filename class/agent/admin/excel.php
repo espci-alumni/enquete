@@ -49,7 +49,7 @@ class extends agent_admin
 
 	function format($value)
 	{
-		$value = mb_convert_encoding($value, 'ISO-8859-1');
+		$value = utf8_decode($value);
 		$value = strtr(str_replace("\r\n", "\n", $value), "\r", "\n");
 		return $value;
 	}
