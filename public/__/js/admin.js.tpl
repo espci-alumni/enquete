@@ -8,7 +8,7 @@ function openSendbox($from)
 
 	var w = 640, h = 550,
 		win = open(
-		{home:'send':1|js},
+		{base:'send':1|js},
 		'sendbox',
 		'status=no,scrollbars=yes,resizable=yes,height='+h+',width='+w+',left=' + (screen.availWidth-w)/2 + ',top=' + (screen.availHeight-h)/2
 	);
