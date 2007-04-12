@@ -1,6 +1,6 @@
 <!-- AGENT 'header' title = 'Bulletin AG espci.org 2006' --><style type="text/css"><!--
 
-.mandatory
+.required
 {
 	color: black;
 }

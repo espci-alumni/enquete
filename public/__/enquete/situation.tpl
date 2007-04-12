@@ -1,6 +1,6 @@
 <!-- AGENT 'header' title = 'Enquête : situation' --><style type="text/css"><!--
 
-.mandatory
+.required
 {
 	color: black;
 }

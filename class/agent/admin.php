@@ -63,7 +63,7 @@ class extends agent
 		$s1 = "\s*[\\n\\r]\s*";
 		$s2 = "\s*[,;\\t]\s*";
 		$s2 = "[0-9]+{$s2}[^,;\\t]+{$s2}[^,;\\t]+{$s2}[-a-z0-9_\.\+]+@([-a-z0-9]+(\.[-a-z0-9]+)+)";
-		$form->add('textarea', 'liste', array('valid' => 'string', "^\s*{$s2}({$s1}{$s2})*\s*$", true));
+		$form->add('textarea', 'liste', array('valid' => 'string', "\s*{$s2}({$s1}{$s2})*\s*", true));
 
 		$save->add(
 			'subject', "Quel est le sujet du mail à envoyer ?", "",
