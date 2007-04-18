@@ -1,4 +1,4 @@
-<?php #import ../..
+<?php
 
 $_GET['$bin'] = '';
 
