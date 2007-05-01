@@ -2,7 +2,7 @@
 
 class extends agent_admin
 {
-	const binary = true;
+	const contentType = '';
 
 	protected $template = 'bin';
 	protected $maxage = 0;
