@@ -31,14 +31,14 @@ class extends agent
 				)';
 		$o = $db->getRow($sql, null, array($user_key));
 
-		if (!$o) CIA::redirect('message/error/user_key');
+		if (!$o) p::redirect('message/error/user_key');
 
 		$template = 'enquete_' . $o->enquete;
 		$enquete = new $template($o);
 
 		$enquete->setup();
 
-		if ($enquete->isSaved) CIA::redirect('thanks/' . $user_key);
+		if ($enquete->isSaved) p::redirect('thanks/' . $user_key);
 
 		$this->template = str_replace('_', '/', $template);
 

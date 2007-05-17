@@ -22,7 +22,7 @@ class extends agent
 				)';
 		$o = $db->getRow($sql, null, array($this->argv->__1__));
 
-		if (!$o) CIA::redirect('index');
+		if (!$o) p::redirect('index');
 
 		$sql = 'SELECT * FROM admin_enquete WHERE enquete=?';
 		$this->enquete = $db->getRow($sql, null, array($o->enquete));
@@ -80,7 +80,7 @@ A+,
 					if (V($data['email'], 'email')) $this->save($o, $data);
 				}
 
-				CIA::redirect();
+				p::redirect();
 			}
 		}
 

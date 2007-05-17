@@ -75,7 +75,7 @@ class extends agent_admin
 				}
 			}
 
-			CIA::redirect('admin/' . $this->argv->__1__ . '?order_by_date=1');
+			p::redirect('admin/' . $this->argv->__1__ . '?order_by_date=1');
 		}
 
 		return $o;

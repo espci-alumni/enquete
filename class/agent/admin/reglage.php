@@ -31,7 +31,7 @@ class extends agent_admin
 		if ( $save->isOn() )
 		{
 			$this->save( $save->getData() );
-			CIA::redirect();
+			p::redirect();
 		}
 
 		return $o;

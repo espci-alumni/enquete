@@ -17,7 +17,7 @@ class extends agent
 
 		$sql = "SELECT * FROM admin_enquete WHERE owner_key=" . $db->quote($this->argv->__1__);
 		if ($row = $db->queryRow($sql)) $this->enquete = $row;
-		else CIA::redirect('message/error/owner_key');
+		else p::redirect('message/error/owner_key');
 	}
 
 	function compose($o)
@@ -78,7 +78,7 @@ class extends agent
 		if ($save->isOn())
 		{
 			$this->save( $save->getData() );
-			CIA::redirect();
+			p::redirect();
 		}
 
 		$relancer->add(
@@ -110,7 +110,7 @@ class extends agent
 				}
 			}
 
-			CIA::redirect();
+			p::redirect();
 		}
 
 		$save_list->add(
@@ -153,7 +153,7 @@ class extends agent
 				}
 			}
 
-			CIA::redirect();
+			p::redirect();
 		}
 
 		return $o;
