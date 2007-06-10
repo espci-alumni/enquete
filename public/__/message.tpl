@@ -17,4 +17,4 @@ La clé utilisée pour la connection à l'interface d'administration des enquêt
 Contactez-nous si vous avez perdu votre clé.
 <!-- END:IF -->
 <!-- END:SET -->
-<!-- INCLUDE message -->
+<!-- INLINE message -->
