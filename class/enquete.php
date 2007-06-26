@@ -123,49 +123,51 @@ abstract class
 		self::$sentlist[$data['result_id'] . '-' . $data['email']] = 1;
 
 
-		// Génère la clef et enregistre l'action
-
-		do $data['user_key'] = substr(p::uniqid(), 0, 16);
-		while ($db->queryOne("SELECT 1 FROM admin_user WHERE user_key=" . $db->quote($data['user_key'])));
-
-		$db->autoExecute('admin_user', $data);
-
-
-		// Envoi du mail au destinataire
-
-		$subject = str_replace(
-			array('{PROMO}',      '{NOM}',      '{PRENOM}'),
-			array($data['promo'], $data['nom'], $data['prenom']),
-			$subject
-		);
-
-		$lien_promo = '';
-		if ($enquete->lien_promo)
+		if ('ouvert' == $enquete->etat_enquete)
 		{
-			$PC1 = new loop_pc1nondestinataires($enquete->enquete, $data['promo']);
-			$lien_promo = 0;
-			while ($PC1->loop()) ++$lien_promo;
+			// Génère la clef et enregistre l'action
 
-			if ($lien_promo)
+			do $data['user_key'] = substr(p::uniqid(), 0, 16);
+			while ($db->queryOne("SELECT 1 FROM admin_user WHERE user_key=" . $db->quote($data['user_key'])));
+
+			$db->autoExecute('admin_user', $data);
+
+
+			// Envoi du mail au destinataire
+
+			$subject = str_replace(
+				array('{PROMO}',      '{NOM}',      '{PRENOM}'),
+				array($data['promo'], $data['nom'], $data['prenom']),
+				$subject
+			);
+
+			$lien_promo = '';
+			if ($enquete->lien_promo)
 			{
-				$lien_promo = $lien_promo > 1
-					? "\nLorsque cet email vous a été envoyé, {$lien_promo} personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de leur envoyer cette enquête. Merci d'avance !"
-					: "\nLorsque cet email vous a été envoyé, une personne de votre promotion n'avait pas reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de lui envoyer cette enquête. Merci d'avance !";
+				$PC1 = new loop_pc1nondestinataires($enquete->enquete, $data['promo']);
+				$lien_promo = 0;
+				while ($PC1->loop()) ++$lien_promo;
 
-				$lien_promo .= "\nhttp://espci.org/enquete/fr/thanks/{$data['user_key']}\n";
+				if ($lien_promo)
+				{
+					$lien_promo = $lien_promo > 1
+						? "\nLorsque cet email vous a été envoyé, {$lien_promo} personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de leur envoyer cette enquête. Merci d'avance !"
+						: "\nLorsque cet email vous a été envoyé, une personne de votre promotion n'avait pas reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de lui envoyer cette enquête. Merci d'avance !";
+
+					$lien_promo .= "\nhttp://espci.org/enquete/fr/thanks/{$data['user_key']}\n";
+				}
+				else $lien_promo = '';
 			}
-			else $lien_promo = '';
-		}
 
-		$anonym = $enquete->anonyme ? "\nLes informations recueillies sont protégées et ne font l'objet que d'une exploitation anonyme. Vos coordonnées personnelles serviront à garder le contact avec vous pour les prochaines enquêtes.\n" : '';
+			$anonym = $enquete->anonyme ? "\nLes informations recueillies sont protégées et ne font l'objet que d'une exploitation anonyme. Vos coordonnées personnelles serviront à garder le contact avec vous pour les prochaines enquêtes.\n" : '';
 
-		$body = str_replace(
-			array('{PROMO}',      '{NOM}',      '{PRENOM}'),
-			array($data['promo'], $data['nom'], $data['prenom']),
-			$body
-		);
+			$body = str_replace(
+				array('{PROMO}',      '{NOM}',      '{PRENOM}'),
+				array($data['promo'], $data['nom'], $data['prenom']),
+				$body
+			);
 
-		$body .= "
+			$body .= "
 
 -----------------------------------------------------------------------
 {$anonym}
@@ -173,7 +175,11 @@ Pour répondre à l'enquête, merci de cliquer sur votre clef personnelle ({$dat
 http://espci.org/enquete/fr/{$data['user_key']}
 {$lien_promo}
 Description de l'enquête :
-{$enquete->description}
+{$enquete->description}";
+
+		}
+
+		$body .= "
 
 -----------------------------------------------------------------------
 
