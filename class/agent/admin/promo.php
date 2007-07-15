@@ -6,7 +6,7 @@ class extends agent_admin
 	{
 		parent::control();
 
-		if (!$this->enquete->lien_promo) p::redirect('admin/' . $this->argv->__1__);
+		if (!$this->enquete->lien_promo) p::redirect('admin/' . $this->get->__1__);
 	}
 
 	function compose($o)
@@ -56,7 +56,7 @@ class extends agent_admin
 					if (V($data['email'], 'email')) $this->save($data);
 				}
 
-				p::redirect('admin/' . $this->argv->__1__ . '?order_by_date=1');
+				p::redirect('admin/' . $this->get->__1__ . '?order_by_date=1');
 			}
 		}
 

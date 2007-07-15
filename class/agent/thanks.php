@@ -2,7 +2,7 @@
 
 class extends agent
 {
-	public $argv = array('__1__');
+	public $get = array('__1__');
 
 	protected $enquete;
 
@@ -20,7 +20,7 @@ class extends agent
 					OR
 					DATE_ADD(date_envoi, INTERVAL hors_delai DAY) > NOW()
 				)';
-		$o = $db->getRow($sql, null, array($this->argv->__1__));
+		$o = $db->getRow($sql, null, array($this->get->__1__));
 
 		if (!$o) p::redirect('index');
 

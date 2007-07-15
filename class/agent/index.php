@@ -2,11 +2,11 @@
 
 class extends agent
 {
-	public $argv = array('__1__');
+	public $get = array('__1__');
 
 	function compose($o)
 	{
-		$user_key = $this->argv->__1__;
+		$user_key = $this->get->__1__;
 
 		if ('' === $user_key)
 		{

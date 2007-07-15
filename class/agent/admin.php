@@ -2,7 +2,7 @@
 
 class extends agent
 {
-	public $argv = array('__1__', 'order_by_date:bool', 'p:int:2' => 1);
+	public $get = array('__1__', 'order_by_date:b', 'p:i:2' => 1);
 
 	protected $enquete;
 	protected $form;
@@ -15,7 +15,7 @@ class extends agent
 
 		$db = DB();
 
-		$sql = "SELECT * FROM admin_enquete WHERE owner_key=" . $db->quote($this->argv->__1__);
+		$sql = "SELECT * FROM admin_enquete WHERE owner_key=" . $db->quote($this->get->__1__);
 		if ($row = $db->queryRow($sql)) $this->enquete = $row;
 		else p::redirect('message/error/owner_key');
 	}
@@ -31,7 +31,7 @@ class extends agent
 			$sql = "SELECT COUNT(*) FROM admin_user u WHERE enquete='{$this->enquete->enquete}'";
 			$o->numPages = ceil($db->getOne($sql) / self::perPage);
 
-			$o->page = min($this->argv->p, $o->numPages) - 1;
+			$o->page = min($this->get->p, $o->numPages) - 1;
 		}
 		else $o->page = 0;
 
@@ -39,7 +39,7 @@ class extends agent
 			FROM admin_user u
 			WHERE enquete='{$this->enquete->enquete}'
 			ORDER BY " . (
-				$this->argv->order_by_date
+				$this->get->order_by_date
 				? 'mtime DESC,promo,nom,prenom'
 				: 'promo,nom,prenom,mtime DESC'
 			);
@@ -63,7 +63,7 @@ class extends agent
 		$s1 = "\s*[\\n\\r]\s*";
 		$s2 = "\s*[,;\\t]\s*";
 		$s2 = "[0-9]+{$s2}[^,;\\t]+{$s2}[^,;\\t]+{$s2}[-a-zA-Z0-9_\.\+]+@([-a-zA-Z0-9]+(\.[-a-zA-Z0-9]+)+)";
-		$form->add('textarea', 'liste', array('valid' => 'string', "\s*{$s2}({$s1}{$s2})*\s*"));
+		$form->add('textarea', 'liste', "\s*{$s2}({$s1}{$s2})*\s*");
 
 		$save->add(
 			'subject', "Quel est le sujet du mail à envoyer ?", "",

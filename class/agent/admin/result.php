@@ -22,7 +22,7 @@ class extends agent_admin
 			$sql = "SELECT COUNT(*) FROM admin_user WHERE enquete='{$enquete}' GROUP BY result_id";
 			$o->numPages = ceil($db->getOne($sql) / self::perPage);
 
-			$o->page = min($this->argv->p, $o->numPages) - 1;
+			$o->page = min($this->get->p, $o->numPages) - 1;
 		}
 		else $o->page = 0;
 
@@ -75,7 +75,7 @@ class extends agent_admin
 				}
 			}
 
-			p::redirect('admin/' . $this->argv->__1__ . '?order_by_date=1');
+			p::redirect('admin/' . $this->get->__1__ . '?order_by_date=1');
 		}
 
 		return $o;
