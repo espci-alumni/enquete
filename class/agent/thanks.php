@@ -2,7 +2,7 @@
 
 class extends agent
 {
-	public $get = array('__1__');
+	public $get = '__1__';
 
 	protected $enquete;
 
