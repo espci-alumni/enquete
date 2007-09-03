@@ -46,7 +46,7 @@ class extends agent
 		$o->USER = new loop_sql($sql, array($this, 'filterUser'), self::perPage * ($o->page), self::perPage);
 
 
-		$form = $this->form = new iaForm($o);
+		$form = $this->form = new pForm($o);
 
 		$save = $form->add('submit', 'save');
 		$relancer = $form->add('submit', 'relancer');
@@ -161,7 +161,7 @@ class extends agent
 
 	function filterUser($data)
 	{
-		$data->f_relance = new iaForm_check($this->form, 'relance', array(
+		$data->f_relance = new pForm_check($this->form, 'relance', array(
 			'item' => array($data->user_key => ''),
 			'multiple' => true
 		));

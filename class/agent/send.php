@@ -6,7 +6,7 @@ class extends agent
 
 	function compose($o)
 	{
-		$form = $this->form = new iaForm($o);
+		$form = $this->form = new pForm($o);
 
 		$send = $form->add('submit', 'send');
 

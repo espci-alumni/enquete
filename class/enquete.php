@@ -28,7 +28,7 @@ abstract class
 			"statut='envoye' AND user_key=" . $db->quote($a->user_key)
 		);
 
-		$form = new iaForm($a);
+		$form = new pForm($a);
 
 		$sql = "SELECT * FROM enquete_{$a->enquete} WHERE result_id=" . $db->quote($a->result_id);
 		if ($defaults = $db->queryRow($sql)) $form->setDefaults($defaults);
@@ -197,6 +197,6 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 			'Return-Path' => "enquete+{$data['user_key']}@espci.org"
 		);
 
-		iaMail::send($headers, $body);
+		pMail::send($headers, $body);
 	}
 }

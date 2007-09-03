@@ -6,7 +6,7 @@ class extends agent_admin
 	{
 		$o = $this->enquete;
 
-		$form = $this->form = new iaForm($o);
+		$form = $this->form = new pForm($o);
 
 		$db = DB();
 
@@ -37,7 +37,7 @@ class extends agent_admin
 		return $o;
 	}
 
-        function save($data)
+	function save($data)
 	{
 		DB()->autoExecute(
 			'admin_enquete',

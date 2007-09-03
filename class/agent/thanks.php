@@ -38,7 +38,7 @@ class extends agent
 
 		if ($this->enquete->lien_promo)
 		{
-			$form = new iaForm($o);
+			$form = new pForm($o);
 			$send = $form->add('submit', 'send');
 
 			$form->add('text', 'subject', array('default' => 'Fw: enquête ' . $o->enquete));

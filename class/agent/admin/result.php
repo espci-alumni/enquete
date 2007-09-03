@@ -36,7 +36,7 @@ class extends agent_admin
 		ORDER BY FIELD(statut, 'enregistre', 'ouvert', 'envoye'), bounced DESC, mtime DESC";
 		$o->USER = new loop_sql($sql, array($this, 'filterUser'), self::perPage * $o->page, self::perPage);
 
-		$form = $this->form = new iaForm($o);
+		$form = $this->form = new pForm($o);
 
 		$relancer = $form->add('submit', 'relancer');
 
@@ -91,7 +91,7 @@ class extends agent_admin
 	function filterUser($data)
 	{
 		$a = (object) array(
-			'f_relance' => new iaForm_check($this->form, 'relance', array(
+			'f_relance' => new pForm_check($this->form, 'relance', array(
 				'item' => array($data->result_id => ''),
 				'multiple' => true
 			)),

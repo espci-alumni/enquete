@@ -13,7 +13,7 @@ class extends agent_admin
 	{
 		$o = $this->enquete;
 
-		$form = new iaForm($o);
+		$form = new pForm($o);
 
 		$form->add('text', 'subject', array('default' => $o->subject));
 		$form->add('textarea', 'template', array('default' => $o->template));
