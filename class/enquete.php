@@ -127,7 +127,7 @@ abstract class
 		{
 			// Génère la clef et enregistre l'action
 
-			do $data['user_key'] = substr(p::uniqid(), 0, 16);
+			do $data['user_key'] = substr(p::strongid(), 0, 16);
 			while ($db->queryOne("SELECT 1 FROM admin_user WHERE user_key=" . $db->quote($data['user_key'])));
 
 			$db->autoExecute('admin_user', $data);
