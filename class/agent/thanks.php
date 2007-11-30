@@ -77,7 +77,7 @@ A+,
 						'email' => $data->f_email->getValue(),
 					);
 
-					if (V($data['email'], 'email')) $this->save($o, $data);
+					if (FILTER::get($data['email'], 'email')) $this->save($o, $data);
 				}
 
 				p::redirect();

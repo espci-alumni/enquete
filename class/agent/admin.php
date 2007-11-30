@@ -137,7 +137,7 @@ class extends agent
 				if (!(int) $liste[0]) $ligne_is_ok = false;
 				if (!$liste[1]) $ligne_is_ok = false;
 				if (!$liste[2]) $ligne_is_ok = false;
-				if (!V($liste[3], 'email')) $ligne_is_ok = false;
+				if (!FILTER::get($liste[3], 'email')) $ligne_is_ok = false;
 
 				if ($ligne_is_ok)
 				{

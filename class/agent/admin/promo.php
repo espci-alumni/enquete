@@ -53,7 +53,7 @@ class extends agent_admin
 						'email' => $data->f_email->getValue(),
 					);
 
-					if (V($data['email'], 'email')) $this->save($data);
+					if (FILTER::get($data['email'], 'email')) $this->save($data);
 				}
 
 				p::redirect('admin/' . $this->get->__1__ . '?order_by_date=1');
