@@ -38,8 +38,6 @@ class extends agent
 
 		$enquete->setup();
 
-		if ($enquete->isSaved) p::redirect('thanks/' . $user_key);
-
 		$this->template = str_replace('_', '/', $template);
 
 		return $o;

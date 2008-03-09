@@ -17,10 +17,10 @@ class extends agent_admin
 
 		$save = $form->add('submit', 'save');
 		$form->add('check', 'etat_enquete', array(
-			'item' => array( 'ouvert' => 'ouvert', 'ferme' => 'fermé')
+			'item' => array('ouvert' => 'ouvert', 'ferme' => 'fermé')
 		));
 		$form->add('textarea', 'description');
-		$form->add('text', 'hors_delai', array( 'valid' => 'int', 1 ));
+		$form->add('text', 'hors_delai', array('valid' => 'int', 1));
 
 		$save->add(
 			'etat_enquete', "", "",
@@ -28,9 +28,9 @@ class extends agent_admin
 			'hors_delai', "Préciser le délai d'expiration des clés hors délais", "Délai non valide"
 		);
 
-		if ( $save->isOn() )
+		if ($save->isOn())
 		{
-			$this->save( $save->getData() );
+			$this->save($save->getData());
 			p::redirect();
 		}
 

@@ -4,9 +4,19 @@ set_time_limit(0);
 
 abstract class
 {
-	public $isSaved = false;
+	protected
 
-	protected $data;
+	$data,
+	$link_template = '%s',
+	$thanks_template = 'thanks/%s',
+	$email_footer = "
+
+_______________________________________________________________________
+Cette enquête est réalisée avec les moyens techniques d'espci.org
+                --- http://espci.org/ ---
+
+
+";
 
 	abstract protected function setupForm($form, $save);
 
@@ -19,52 +29,54 @@ abstract class
 	{
 		$db = DB();
 
-		$a = $this->data;
+		$o = $this->data;
 
 		$db->autoExecute(
 			'admin_user',
 			array('statut' => 'ouvert'),
 			MDB2_AUTOQUERY_UPDATE,
-			"statut='envoye' AND user_key=" . $db->quote($a->user_key)
+			"statut='envoye' AND user_key=" . $db->quote($o->user_key)
 		);
 
-		$form = new pForm($a);
+		$form = new pForm($o);
 
-		$sql = "SELECT * FROM enquete_{$a->enquete} WHERE result_id=" . $db->quote($a->result_id);
+		$sql = "SELECT * FROM enquete_{$o->enquete} WHERE result_id=" . $db->quote($o->result_id);
 		if ($defaults = $db->queryRow($sql)) $form->setDefaults($defaults);
 
 		$save = $form->add('submit', 'save');
 
 		$this->setupForm($form, $save);
 
-		if ($save->isOn()) $this->save();
+		if ($save->isOn())
+		{
+			$this->save();
+			p::redirect(sprintf($this->thanks_template, $o->user_key));
+		}
 	}
 
 	function save()
 	{
 		$db = DB();
-		$a = $this->data;
-
-		$this->isSaved = true;
+		$o = $this->data;
 
 		$db->autoExecute(
 			'admin_user',
 			array('statut' => 'enregistre'),
 			MDB2_AUTOQUERY_UPDATE,
-			"statut='ouvert' AND user_key=" . $db->quote($a->user_key)
+			"statut='ouvert' AND user_key=" . $db->quote($o->user_key)
 		);
 
 		$db->autoExecute(
-			'enquete_' . $a->enquete,
-			$a->f_save->getData(),
+			'enquete_' . $o->enquete,
+			$o->f_save->getData(),
 			MDB2_AUTOQUERY_UPDATE,
-			'result_id=' . $a->result_id
+			'result_id=' . $o->result_id
 		);
 	}
 
-	static protected $sentlist = array();
+	protected $sentlist = array();
 
-	static function send($from, $replyTo, $enquete, $data, $persist)
+	function send($from, $replyTo, $enquete, $data, $persist)
 	{
 		$db = DB();
 
@@ -151,41 +163,39 @@ abstract class
 				if ($lien_promo)
 				{
 					$lien_promo = $lien_promo > 1
-						? "\nLorsque cet email vous a été envoyé, {$lien_promo} personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de leur envoyer cette enquête. Merci d'avance !"
-						: "\nLorsque cet email vous a été envoyé, une personne de votre promotion n'avait pas reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de lui envoyer cette enquête. Merci d'avance !";
+						? "\nLorsque cet email vous a été envoyé, {$lien_promo} personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de la leur envoyer. Merci d'avance !"
+						: "\nLorsque cet email vous a été envoyé, une personne de votre promotion n'avait pas reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de la lui envoyer. Merci d'avance !";
 
-					$lien_promo .= "\nhttp://espci.org/enquete/fr/thanks/{$data['user_key']}\n";
+					$lien_promo .= "\n" . p::__BASE__() . sprintf($this->thanks_template, $data['user_key']) . "\n";
 				}
 				else $lien_promo = '';
 			}
 
-			$anonym = $enquete->anonyme ? "\nLes informations recueillies sont protégées et ne font l'objet que d'une exploitation anonyme. Vos coordonnées personnelles serviront à garder le contact avec vous pour les prochaines enquêtes.\n" : '';
+			$anonym = $enquete->anonyme ? "\nLes informations recueillies sont protégées et ne font l'objet que d'une exploitation anonyme.\n" : '';
+			$link = sprintf($this->link_template, $data['user_key']);
 
 			$body = str_replace(
-				array('{PROMO}',      '{NOM}',      '{PRENOM}'),
-				array($data['promo'], $data['nom'], $data['prenom']),
+				array('{PROMO}',      '{NOM}',      '{PRENOM}',      '{LIEN}'),
+				array($data['promo'], $data['nom'], $data['prenom'], $link   ),
 				$body
 			);
 
 			$body .= "
-_______________________________________________________________________
+	_______________________________________________________________________";
+		
+			if (false === strpos($body, $link)) $body .= "
 {$anonym}
 Pour répondre, merci de cliquer sur ce lien (réservé à {$data['prenom']} {$data['nom']}) :
-http://espci.org/enquete/fr/{$data['user_key']}
+{$link}";
+
+			$body .= "
 {$lien_promo}
 Description :
 {$enquete->description}";
 
 		}
 
-		$body .= "
-
-_______________________________________________________________________
-Cette enquête est réalisée avec les moyens techniques d'espci.org
-                --- http://espci.org/ ---
-
-
-";
+		$body .= $this->email_footer;
 
 		$headers = array(
 			'To' => $data['email'],

@@ -42,17 +42,17 @@ class extends agent
 			$send = $form->add('submit', 'send');
 
 			$form->add('text', 'subject', array('default' => 'Fw: enquête ' . $o->enquete));
-			$form->add('textarea', 'template', array('default' => "Hello,
+			$form->add('textarea', 'template', array('default' => "Bonjour,
 
-Je t'envoie une invitation pour que tu puisses répondre à l'enquête {$o->enquete} de {$this->enquete->owner}.
+Je t'envoie une invitation pour que tu puisses répondre à l'enquête {$o->enquete} menée par {$this->enquete->owner}.
 Si ce n'est pas déjà fait, tu devrais aussi t'inscrire sur espci.org, ça faciliterait les prochaines enquêtes...
 
-A+,
+Salutations,
 {$o->prenom}
 "));
 
 			$send->add(
-				'subject', "Complétez le sujet du mail à envoyer", "",
+				'subject', "Merci de compléter le sujet du mail qui sera envoyé", "",
 				'template', "", ""
 			);
 
@@ -91,6 +91,8 @@ A+,
 	{
 		$data['hors_delai'] = $o->hors_delai;
 
-		enquete::send("\"{$o->prenom} {$o->nom}\" <invitation@espci.org>", $o->email, $this->enquete, $data, false);
+		$enquete = 'enquete_' . $this->enquete->enquete;
+		$enquete = new $enquete($this->enquete);
+		$enquete->send("\"{$o->prenom} {$o->nom}\" <invitation@espci.org>", $o->email, $this->enquete, $data, false);
 	}
 }

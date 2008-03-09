@@ -12,26 +12,6 @@ li
 
 <h2>Merci de votre participation</h2>
 
-<ul style="width: 500px;">
-<li>
-	<!-- IF 'enregistre' != $statut -->
-	Vous n'avez pas encore répondu à l'enquête.
-	<!-- ELSE -->
-	Tant que l'enquête n'est pas cloturée, vous pouvez encore modifier votre réponse.
-	<!-- END:IF -->
-	<a href="{~}{$user_key}">Cliquez ici ...</a>
-</li>
-
-<!-- IF $membre -->
-<li>
-<b>A savoir à propos de l'<a href="{/}annuaire/edit" target="_blank">annuaire espci.org</a> :</b> Si vous remplissez votre fiche comme un mini-CV (du stage 3A jusqu'à aujourd'hui), nous pourrons faire une étude détaillée sur le parcours des PCéens.
-</li>
-<!-- ELSE -->
-<li>
-Pour faciliter les enquêtes futures, nous vous invitons à <a href="{/}fr/auth" target="_blank">vous inscrire sur espci.org</a>.
-</li>
-<!-- END:IF -->
-
 <!-- SET a$a -->1<!-- END:SET -->
 <!-- SET $PC1 -->
 <!-- IF $PC1 -->
@@ -39,7 +19,7 @@ Pour faciliter les enquêtes futures, nous vous invitons à <a href="{/}fr/auth"
 <!-- AGENT $form -->
 
 <fieldset><legend>Email manquants&nbsp;:</legend>
-Je n'ai pas l'email de ces PCéens. Si vous en connaissez certain, pouvez-vous les renseigner s'il vous plait ?<br />
+Nous n'avons pas l'email de ces PCéens. Si vous en connaissez certains, pourriez-vous les renseigner s'il vous plait ?
 <br />
 Merci d'avance,<br />
 <br />
@@ -79,11 +59,9 @@ Merci d'avance,<br />
 <!-- END:SET -->
 
 <!-- IF !a$a -->
-<li>{$PC1}</li>
+{$PC1}
+<!-- ELSE -->
+Tous les PC de votre promo ont maintenant déjà reçu l'enquête.
 <!-- END:IF -->
 
-<li>
-Si vous n'êtes pas encore cotisant, nous avons besoin de vous pour supporter le projet espci.org. <a href="{/}fr/cotiser" target="_blank">Cliquez ici pour en savoir plus sur l'adhésion</a>.
-</li>
-</ul>
 <!-- AGENT 'footer' -->

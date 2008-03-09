@@ -179,6 +179,8 @@ class extends agent
 			$data['hors_delai'] = $this->enquete->hors_delai;
 		}
 
-		enquete::send($this->enquete->owner, $this->enquete->owner, $this->enquete, $data, true);
+		$enquete = 'enquete_' . $this->enquete->enquete;
+		$enquete = new $enquete($this->enquete);
+		$enquete->send($this->enquete->owner, $this->enquete->replyTo ? $this->enquete->replyTo : $this->enquete->owner, $this->enquete, $data, true);
 	}
 }
