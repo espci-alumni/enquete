@@ -24,7 +24,7 @@ li
 
 <!-- IF $membre -->
 <li>
-<b>A savoir à propos de l'<a href="{/}annuaire/" target="_blank">annuaire espci.org</a> :</b> Si vous remplissez votre fiche comme un mini-CV (du stage 3A jusqu'à aujourd'hui), nous pourrons faire une étude détaillée sur le parcours des PCéens.
+<b>A savoir à propos de l'<a href="{/}annuaire/edit" target="_blank">annuaire espci.org</a> :</b> Si vous remplissez votre fiche comme un mini-CV (du stage 3A jusqu'à aujourd'hui), nous pourrons faire une étude détaillée sur le parcours des PCéens.
 </li>
 <!-- ELSE -->
 <li>

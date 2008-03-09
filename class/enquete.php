@@ -168,21 +168,19 @@ abstract class
 			);
 
 			$body .= "
-
------------------------------------------------------------------------
+_______________________________________________________________________
 {$anonym}
-Pour répondre à l'enquête, merci de cliquer sur votre clef personnelle ({$data['prenom']} {$data['nom']}) :
+Pour répondre, merci de cliquer sur ce lien (réservé à {$data['prenom']} {$data['nom']}) :
 http://espci.org/enquete/fr/{$data['user_key']}
 {$lien_promo}
-Description de l'enquête :
+Description :
 {$enquete->description}";
 
 		}
 
 		$body .= "
 
------------------------------------------------------------------------
-
+_______________________________________________________________________
 Cette enquête est réalisée avec les moyens techniques d'espci.org
                 --- http://espci.org/ ---
 
