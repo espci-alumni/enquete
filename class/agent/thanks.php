@@ -42,7 +42,7 @@ class extends agent
 			$send = $form->add('submit', 'send');
 
 			$form->add('text', 'subject', array('default' => 'Fw: enquête ' . $o->enquete));
-			$form->add('textarea', 'template', array('default' => "Bonjour,
+			$form->add('textarea', 'template', array('default' => "Bonjour {PRENOM},
 
 Je t'envoie une invitation pour que tu puisses répondre à l'enquête {$o->enquete} menée par {$this->enquete->owner}.
 Si ce n'est pas déjà fait, tu devrais aussi t'inscrire sur espci.org, ça faciliterait les prochaines enquêtes...

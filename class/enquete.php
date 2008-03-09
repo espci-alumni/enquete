@@ -131,8 +131,8 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 
 		// Vérifie que l'on n'a pas déjà envoyé un email à cette personne dans ce processus
 
-		if (isset(self::$sentlist[$data['result_id'] . '-' . $data['email']])) return;
-		self::$sentlist[$data['result_id'] . '-' . $data['email']] = 1;
+		if (isset($this->sentlist[$data['result_id'] . '-' . $data['email']])) return;
+		$this->sentlist[$data['result_id'] . '-' . $data['email']] = 1;
 
 
 		if ('ouvert' == $enquete->etat_enquete)
@@ -163,7 +163,7 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 				if ($lien_promo)
 				{
 					$lien_promo = $lien_promo > 1
-						? "\nLorsque cet email vous a été envoyé, {$lien_promo} personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de la leur envoyer. Merci d'avance !"
+						? "\nLorsque cet email vous a été envoyé, plusieurs personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de la leur envoyer. Merci d'avance !"
 						: "\nLorsque cet email vous a été envoyé, une personne de votre promotion n'avait pas reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de la lui envoyer. Merci d'avance !";
 
 					$lien_promo .= "\n" . p::__BASE__() . sprintf($this->thanks_template, $data['user_key']) . "\n";
@@ -172,7 +172,7 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 			}
 
 			$anonym = $enquete->anonyme ? "\nLes informations recueillies sont protégées et ne font l'objet que d'une exploitation anonyme.\n" : '';
-			$link = sprintf($this->link_template, $data['user_key']);
+			$link = p::__BASE__() . sprintf($this->link_template, $data['user_key']);
 
 			$body = str_replace(
 				array('{PROMO}',      '{NOM}',      '{PRENOM}',      '{LIEN}'),
