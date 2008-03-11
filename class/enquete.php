@@ -200,9 +200,14 @@ Description :
 		$headers = array(
 			'To' => $data['email'],
 			'From' => $from,
-			'Reply-To' => $replyTo,
+			'Precedence' => 'bulk',
 			'Subject' => $subject,
-			'Return-Path' => "enquete+{$data['user_key']}@espci.org"
+			'Return-Path' => "enquete+{$data['user_key']}@espci.org",
+		);
+
+		if ($replyTo && $replyTo !== $from) $headers += array(
+			'Sender' => $replyTo,
+			'Reply-To' => $replyTo,
 		);
 
 		pMail::send($headers, $body);
