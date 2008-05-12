@@ -20,7 +20,7 @@ class extends enquete
 
 		$form->add('textarea', 'libre');
 
-		$save->add(
+		$save->attach(
 			'present', "Serez-vous présent à l'AG du 22 octobre ?", "",
 			'conseil', "Approuvez-vous le nouveau conseil ?", "",
 			'comptes2006', "Approuvez-vous les comptes 2006 ?", "",

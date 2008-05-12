@@ -13,7 +13,7 @@ class extends agent
 		$form->add('text', 'subject');
 		$form->add('textarea', 'template');
 
-		$send->add(
+		$send->attach(
 			'subject', "Quel est le sujet du mail à envoyer ?", "",
 			'template', "", ""
 		);

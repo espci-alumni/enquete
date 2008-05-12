@@ -27,7 +27,7 @@ class extends enquete
 		$form->add('textarea', 'historique');
 		$form->add('textarea', 'remarque');
 
-		$save->add(
+		$save->attach(
 			'adresse', "", "",
 			'actif', "Avez-vous actuellement un emploi ?", "",
 			'date_debut', "", "Entrez une date au format dd-mm-aaaa",

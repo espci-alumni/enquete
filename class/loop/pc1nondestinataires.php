@@ -48,7 +48,7 @@ class extends loop_sql
 				if ($this->form)
 				{
 					$data->f_email = $this->form->add('text', $name, array('valid' => 'email', 'default' => $email), false);
-					$this->send->add($name, '', 'Email non valide');
+					$this->send->attach($name, '', 'Email non valide');
 				}
 
 				return $data;

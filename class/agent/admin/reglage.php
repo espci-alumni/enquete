@@ -22,7 +22,7 @@ class extends agent_admin
 		$form->add('textarea', 'description');
 		$form->add('text', 'hors_delai', array('valid' => 'int', 1));
 
-		$save->add(
+		$save->attach(
 			'etat_enquete', "", "",
 			'description', "", "",
 			'hors_delai', "Préciser le délai d'expiration des clés hors délais", "Délai non valide"

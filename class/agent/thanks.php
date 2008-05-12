@@ -51,7 +51,7 @@ Salutations,
 {$o->prenom}
 "));
 
-			$send->add(
+			$send->attach(
 				'subject', "Merci de compléter le sujet du mail qui sera envoyé", "",
 				'template', "", ""
 			);

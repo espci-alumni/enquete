@@ -19,7 +19,7 @@ class extends agent_admin
 		$form->add('textarea', 'template', array('default' => $o->template));
 
 		$form->add('text', 'promo', array('valid' => 'int', 1));
-		$form->add('submit', 'showpromo')->add(
+		$form->add('submit', 'showpromo')->attach(
 			'promo',
 			"Quelle promotion souhaitez-vous afficher ?",
 			'Numéro de promotion non valide'
@@ -28,7 +28,7 @@ class extends agent_admin
 		if ($promo = $o->f_promo->getValue())
 		{
 			$send = $form->add('submit', 'send');
-			$send->add(
+			$send->attach(
 				'subject', "Quel est le sujet du mail à envoyer ?", "",
 				'template', "", ""
 			);

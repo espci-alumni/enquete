@@ -43,7 +43,7 @@ class extends agent_admin
 		$form->add('text', 'subject', array('default' => $o->subject));
 		$form->add('textarea', 'template', array('default' => $o->template));
 
-		$relancer->add(
+		$relancer->attach(
 			'subject', "Quel est le sujet du mail à envoyer ?", "",
 			'template', "", ""
 		);

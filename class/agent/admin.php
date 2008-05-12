@@ -65,7 +65,7 @@ class extends agent
 		$s2 = "[0-9]+{$s2}[^,;\\t]+{$s2}[^,;\\t]+{$s2}[-a-zA-Z0-9_\.\+]+@([-a-zA-Z0-9]+(\.[-a-zA-Z0-9]+)+)";
 		$form->add('textarea', 'liste', array('valid' => 'text', "\s*{$s2}({$s1}{$s2})*\s*", 'maxlength' => 0));
 
-		$save->add(
+		$save->attach(
 			'subject', "Quel est le sujet du mail à envoyer ?", "",
 			'template', "", "",
 
@@ -81,7 +81,7 @@ class extends agent
 			p::redirect();
 		}
 
-		$relancer->add(
+		$relancer->attach(
 			'subject', "Quel est le sujet du mail à envoyer ?", "",
 			'template', "", ""
 		);
@@ -113,7 +113,7 @@ class extends agent
 			p::redirect();
 		}
 
-		$save_list->add(
+		$save_list->attach(
 			'liste', "La liste à envoyer est vide", "Le format de la liste n'est pas valide.",
 			'subject', "Quel est le sujet du mail à envoyer ?", "",
 			'template', "", ""
