@@ -6,7 +6,11 @@ class extends enquete
 	{
 		$form->add('textarea', 'adresse');
 		$form->add('check', 'actif', array(
-			'item' => array('oui' => 'oui', 'non' => 'non', 'idem' => "ma situation n'a pas changé depuis la dernière enquête")
+			'item' => array(
+				'oui' => 'oui',
+				'non' => 'non',
+		//		'idem' => "ma situation n'a pas changé depuis la dernière enquête",
+			)
 		));
 
 		$form->add('date', 'date_debut');
@@ -33,9 +37,9 @@ class extends enquete
 		$save->attach(
 			'adresse', "", "",
 			'actif', "Avez-vous actuellement un emploi ?", "",
-			'date_debut', "", "Entrez une date au format dd-mm-aaaa",
+			'date_debut', "", "Date non valide",
 			'type_emploi', "", "",
-			'date_fin', "", "Entrez une date au format dd-mm-aaaa",
+			'date_fin', "", "Date non valide",
 			'intitule_poste', "", "",
 			'domaine_activite', "", "",
 			'societe', "", "",

@@ -188,9 +188,13 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 Pour répondre, merci de cliquer sur ce lien (réservé à {$data['prenom']} {$data['nom']}) :
 {$link}";
 
+			if ($enquete->description)
+			{
+				$enquete->description = "Description :\n" . $enquete->description;
+			}
+
 			$body .= "
 {$lien_promo}
-Description :
 {$enquete->description}";
 
 		}

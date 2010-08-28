@@ -11,7 +11,7 @@
 
 <script type="text/javascript">/*<![CDATA[*/
 
-f = document.forms[0];
+f = document.forms[1];
 from = opener.fromSubmit;
 ffrom = from.form;
 
