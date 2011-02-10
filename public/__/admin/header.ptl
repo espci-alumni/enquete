@@ -1,6 +1,33 @@
 <!-- AGENT 'header' title = 'Administration des enquêtes' -->
 <script type="text/javascript" src="{~}js/admin"></script >
 
+<!-- IF $nb_user -->
+<div style="float: right; font-size: 10px;">
+<table>
+<tr>
+	<td>Messages envoyés : </td> 
+        <td align="right">{$nb_envoye}</td>
+</tr>
+<tr>
+	<td>Promos sondées :</td>
+	<td align="right">{$nb_promo}</td>
+</tr>
+<tr>
+        <td>Personnes sondées : </td> 
+        <td align="right">{$nb_user}</td>
+</tr>
+<tr>
+        <td>Taux d'ouverture : </td> 
+	<td align="right">{'%d'|printf:100*$nb_ouvert/$nb_user}%</td>
+</tr>
+<tr>
+        <td>Taux de réponse : </td> 
+	<td align="right">{'%d'|printf:100*$nb_enregistre/$nb_user}%</td>
+</tr>
+</table>
+</div>
+<!-- END:IF -->
+
 <h1>Enquête {a$enquete}</h1>
 
 <!-- SET a$a -->admin/{a$owner_key}<!-- END:SET -->

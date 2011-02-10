@@ -1,0 +1,144 @@
+<!-- AGENT 'header' title = 'Enquête Situation 2011' --><style type="text/css"><!--
+
+.required
+{
+	color: black;
+}
+
+.errormsg
+{
+	font-style: italic;
+}
+
+span.errormsg
+{
+	padding-left: 10px;
+	position: absolute;
+}
+
+.detail
+{
+	font-style: italic;
+	font-size: 70%;
+}
+
+table, input.text, textarea
+{
+	width: 100%;
+}
+
+td
+{
+	padding: 0;
+}
+
+--></style>
+
+<!-- IF !$form -->
+Pour répondre à cette enquête, vous devez utiliser la clé personnelle qui vous a été envoyée par email.<br>
+En cas de problème, merci de contacter le propriétaire de cette enquête.<br>
+<!-- ELSE -->
+<!-- AGENT $form _mode_='errormsg' -->
+
+<!-- AGENT $form -->
+
+<!-- SET g$inputFormat --><tr><td style="white-space: nowrap; width: 20%">%0&nbsp;:</td><td>%1%2</td></tr><!-- END:SET -->
+
+<blockquote style="width: 600px">
+<p>
+{$prenom} {$nom}, promotion {$promo}<br>
+{$email}
+</p>
+
+<!-- AGENT $f_situation _caption_="Quelle est votre situation actuelle ?" _format_='<h3>%0</h3><p>%1%2</p>' -->
+<table>
+<!-- AGENT $f_salaire              _caption_="Salaire actuel, annuel brut en € (dont prime type)"-->
+<!-- AGENT $f_salaire_1er          _caption_="Salaire d'embauche de votre 1<sup>er</sup> emploi (dont prime)"-->
+</table>
+
+<h3>Quel est votre historique professionnel&nbsp;?</h3>
+
+<p>
+Quels sont les emplois que vous avez occupés depuis la sortie de l’ESPCI,
+y compris thèse et post-doctorat le cas échéant.
+Dans l’ordre chronologique inverse.
+</p>
+
+<blockquote>
+<h4>Emploi actuel (n)</h4>
+<table>
+<!-- AGENT $f_debut_1    _caption_="Date de début" placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_fin_1      _caption_="Date de fin"   placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_type_1     _caption_="Type d'emploi" placeholder="CDI, CDD, Bourse, etc." -->
+<!-- AGENT $f_poste_1    _caption_="Intitulé du poste" -->
+<!-- AGENT $f_domaine_1  _caption_="Votre domaine d'activité" -->
+<!-- AGENT $f_societe_1  _caption_="Entreprise, organisme" -->
+<!-- AGENT $f_pays_1     _caption_="Pays" -->
+</table>
+</blockquote>
+
+<blockquote>
+<h4>Emploi (n-1)</h4>
+<table>
+<!-- AGENT $f_debut_2    _caption_="Date de début" placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_fin_2      _caption_="Date de fin"   placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_type_2     _caption_="Type d'emploi" placeholder="CDI, CDD, Bourse, etc." -->
+<!-- AGENT $f_poste_2    _caption_="Intitulé du poste" -->
+<!-- AGENT $f_domaine_2  _caption_="Votre domaine d'activité" -->
+<!-- AGENT $f_societe_2  _caption_="Entreprise, organisme" -->
+<!-- AGENT $f_pays_2     _caption_="Pays" -->
+</table>
+</blockquote>
+
+<blockquote>
+<h4>Emploi (n-2)</h4>
+<table>
+<!-- AGENT $f_debut_3    _caption_="Date de début" placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_fin_3      _caption_="Date de fin"   placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_type_3     _caption_="Type d'emploi" placeholder="CDI, CDD, Bourse, etc." -->
+<!-- AGENT $f_poste_3    _caption_="Intitulé du poste" -->
+<!-- AGENT $f_domaine_3  _caption_="Votre domaine d'activité" -->
+<!-- AGENT $f_societe_3  _caption_="Entreprise, organisme" -->
+<!-- AGENT $f_pays_3     _caption_="Pays" -->
+</table>
+</blockquote>
+
+<blockquote>
+<h4>Emploi (n-3)</h4>
+<table>
+<!-- AGENT $f_debut_4    _caption_="Date de début" placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_fin_4      _caption_="Date de fin"   placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_type_4     _caption_="Type d'emploi" placeholder="CDI, CDD, Bourse, etc." -->
+<!-- AGENT $f_poste_4    _caption_="Intitulé du poste" -->
+<!-- AGENT $f_domaine_4  _caption_="Votre domaine d'activité" -->
+<!-- AGENT $f_societe_4  _caption_="Entreprise, organisme" -->
+<!-- AGENT $f_pays_4     _caption_="Pays" -->
+</table>
+</blockquote>
+
+<blockquote>
+<h4>Emploi (n-4)</h4>
+<table>
+<!-- AGENT $f_debut_5    _caption_="Date de début" placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_fin_5      _caption_="Date de fin"   placeholder="au format jj-mm-aaaa" -->
+<!-- AGENT $f_type_5     _caption_="Type d'emploi" placeholder="CDI, CDD, Bourse, etc." -->
+<!-- AGENT $f_poste_5    _caption_="Intitulé du poste" -->
+<!-- AGENT $f_domaine_5  _caption_="Votre domaine d'activité" -->
+<!-- AGENT $f_societe_5  _caption_="Entreprise, organisme" -->
+<!-- AGENT $f_pays_5     _caption_="Pays" -->
+</table>
+</blockquote>
+
+<h3>Recherche d'emploi, adéquation de la formation</h3>
+
+<!-- SET g$inputFormat --><p>%0&nbsp;:<br>%1%2</p><!-- END:SET -->
+
+<!-- AGENT $f_difficulte rows=10 _caption_="Difficultés eventuelles rencontrées lors de votre recherche d’emploi" -->
+<!-- AGENT $f_remarque  rows=10 _caption_="Remarques sur l’adéquation de votre formation aux emplois que vous avez occupé" -->
+
+<div align="right"><!-- AGENT $f_save value='Enregistrer' --></div>
+</blockquote>
+
+<!-- AGENT $form _mode_='close' -->
+<!-- END:IF -->
+<!-- AGENT 'footer' -->

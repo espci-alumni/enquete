@@ -21,17 +21,9 @@ li
 	<!-- END:IF -->
 	<a href="{~}{$user_key}">Cliquez ici ...</a>
 </li>
-
-<!-- IF $membre -->
 <li>
-<b>A savoir à propos de l'<a href="{/}annuaire/edit" target="_blank">annuaire espci.org</a> :</b> Si vous remplissez votre fiche comme un mini-CV (du stage 3A jusqu'à aujourd'hui), nous pourrons faire une étude détaillée sur le parcours des PCéens.
+Pour faciliter les enquêtes futures, pensez à <a href="{/}fr/auth" target="_blank">vous inscrire sur espci.org</a> et à mettre à jour votre adresse email universelle.
 </li>
-<!-- ELSE -->
-<li>
-Pour faciliter les enquêtes futures, nous vous invitons à <a href="{/}fr/auth" target="_blank">vous inscrire sur espci.org</a>.
-</li>
-<!-- END:IF -->
-
 <!-- SET a$a -->1<!-- END:SET -->
 <!-- SET $PC1 -->
 <!-- IF $PC1 -->

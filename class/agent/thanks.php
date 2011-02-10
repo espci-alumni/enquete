@@ -29,13 +29,6 @@ class extends agent
 
 		$o->owner = $this->enquete->owner;
 
-		$sql = 	'SELECT 1
-			FROM PCORG.system
-			WHERE REPLACE(nom, "-", " ") = REPLACE(?, "-", " ")
-				AND REPLACE(prenom, "-", " ") = REPLACE(?, "-", " ")
-				AND promotion = ?';
-		$o->membre = (bool) $db->getOne($sql, null, array($o->nom, $o->prenom, $o->promo));
-
 		if ($this->enquete->lien_promo)
 		{
 			$form = new pForm($o);
@@ -44,10 +37,9 @@ class extends agent
 			$form->add('text', 'subject', array('default' => 'Fw: enquête ' . $o->enquete));
 			$form->add('textarea', 'template', array('default' => "Bonjour {PRENOM},
 
-Je t'envoie une invitation pour que tu puisses répondre à l'enquête {$o->enquete} menée par {$this->enquete->owner}.
-Si ce n'est pas déjà fait, tu devrais aussi t'inscrire sur espci.org, ça faciliterait les prochaines enquêtes...
+Je te transmets l'enquête {$o->enquete} menée par {$this->enquete->owner}.
+N'oublie pas de t'inscrire sur espci.org au passage si ça n'est pas déjà le cas.
 
-Salutations,
 {$o->prenom}
 "));
 

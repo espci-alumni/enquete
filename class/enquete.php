@@ -163,8 +163,8 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 				if ($lien_promo)
 				{
 					$lien_promo = $lien_promo > 1
-						? "\nLorsque cet email vous a été envoyé, plusieurs personnes de votre promotion n'avaient pas reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de la leur envoyer. Merci d'avance !"
-						: "\nLorsque cet email vous a été envoyé, une personne de votre promotion n'avait pas reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de la lui envoyer. Merci d'avance !";
+						? "{$lien_promo} personnes de votre promotion n'a pas encore reçu l'enquête. Vous en connaissez peut-être quelques-uns ? Le lien ci-dessous vous permet de la leur envoyer. Merci d'avance !"
+						: "Une personne de votre promotion n'a pas encore reçu l'enquête. Vous la connaissez peut-être ? Le lien ci-dessous vous permet de la lui envoyer. Merci d'avance !";
 
 					$lien_promo .= "\n" . p::__BASE__() . sprintf($this->thanks_template, $data['user_key']) . "\n";
 				}
@@ -180,23 +180,19 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 				$body
 			);
 
-			$body .= "
-	_______________________________________________________________________";
+			$body .= "\n_______________________________________________________________________";
 		
 			if (false === strpos($body, $link)) $body .= "
 {$anonym}
 Pour répondre, merci de cliquer sur ce lien (réservé à {$data['prenom']} {$data['nom']}) :
-{$link}";
+{$link}\n";
+
+			$body .= "\n{$lien_promo}";
 
 			if ($enquete->description)
 			{
-				$enquete->description = "Description :\n" . $enquete->description;
+				$body .= "\nDescription :\n" . $enquete->description;
 			}
-
-			$body .= "
-{$lien_promo}
-{$enquete->description}";
-
 		}
 
 		$body .= $this->email_footer;
@@ -204,7 +200,7 @@ Pour répondre, merci de cliquer sur ce lien (réservé à {$data['prenom']} {$d
 		$headers = array(
 			'To' => $data['email'],
 			'From' => $from,
-			'Precedence' => 'bulk',
+//			'Precedence' => 'bulk',
 			'Subject' => $subject,
 			'Return-Path' => "enquete+{$data['user_key']}@espci.org",
 		);

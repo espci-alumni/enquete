@@ -2,7 +2,7 @@
 
 $CONFIG += array(
 
-	'DSN' => PCORG::dsn('enquete'),
+	'DSN' => PCORG::DSN('enquete'),
 	'clientside' => false,
 
 );

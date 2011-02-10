@@ -12,13 +12,13 @@ class extends loop_sql
 		$this->form = $form;
 		$this->send = $send;
 
-		$form = $form ? '' : 'AND ISNULL(s.uid)';
+		$form = $form ? '' : "AND login=''";
 
 		parent::__construct(
-			"SELECT p.pceen_id, p.nom, p.prenom, p.promo, " .( $hide_email ? "''" : "CONCAT(s.local_email, '@espci.org')" ). " AS email
-			FROM PCORG.pceen p LEFT JOIN PCORG.system s ON p.uid=s.uid
-			WHERE p.diplome AND !p.decede AND p.promo={$promo} {$form}
-			ORDER BY p.nom, p.prenom"
+			"SELECT contact_id, nom_usuel as nom, prenom_usuel as prenom, promotion as promo, " .( $hide_email ? "''" : "IF(login!='',CONCAT(login, '@espci.org'),'')" ). " AS email
+			FROM tribes.contact_contact
+			WHERE diplome AND NOT date_deces AND promotion={$promo} {$form}
+			ORDER BY nom, prenom"
 		);
 	}
 
@@ -37,7 +37,7 @@ class extends loop_sql
 			if ($db->getOne($sql, null, array($data->nom, $data->prenom, $data->promo, $this->enquete))) return $this->next();
 			else
 			{
-				$name = 'pc' . $data->pceen_id;
+				$name = 'pc' . $data->contact_id;
 				$email = $data->email;
 
 				$data = (object) array(

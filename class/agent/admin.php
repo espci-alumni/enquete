@@ -56,8 +56,8 @@ class extends agent
 		$form->add('textarea', 'template', array('default' => $o->template));
 
 		$form->add('text', 'promo', array('valid' => 'int') );
-		$form->add('text', 'nom');
-		$form->add('text', 'prenom');
+		$form->add('name', 'nom');
+		$form->add('name', 'prenom');
 		$form->add('text', 'email', array('valid' => 'email') );
 
 		$s1 = "\s*[\\n\\r]\s*";
@@ -145,10 +145,10 @@ class extends agent
 						'subject' => $data['subject'],
 						'template' => $data['template'],
 
-						'promo' => $liste[0],
-						'nom' => $liste[1],
-						'prenom' => $liste[2],
-						'email' => $liste[3],
+						'promo'  => $liste[0],
+						'nom'    => FILTER::get($liste[1], 'name'),
+						'prenom' => FILTER::get($liste[2], 'name'),
+						'email'  => $liste[3],
 					));
 				}
 			}
