@@ -1,14 +1,14 @@
 <!-- AGENT 'header' title="Merci" -->
 
-<style type="text/css">
+<style>
 li
 {
-	padding-bottom: 10px;
-	vertical-align: top;
+    padding-bottom: 10px;
+    vertical-align: top;
 }
 </style>
 
-<script type="text/javascript" src="{~}js/admin"></script >
+<script src="{~}js/admin"></script>
 
 <h2>Merci de votre participation</h2>
 
@@ -20,21 +20,21 @@ li
 
 <fieldset><legend>Email manquants&nbsp;:</legend>
 Nous n'avons pas l'email de ces PCéens. Si vous en connaissez certains, pourriez-vous les renseigner s'il vous plait ?
-<br />
-Merci d'avance,<br />
-<br />
-{$owner}<br />
-<br />
+<br>
+Merci d'avance,<br>
+<br>
+{$owner}<br>
+<br>
 <div style="height:300px;overflow:auto;width:100%">
 <table>
 <tr>
-	<th>Nom</th>
-	<th>Email</th>
+    <th>Nom</th>
+    <th>Email</th>
 </tr>
 <!-- LOOP $PC1 --><!-- SET a$a --><!-- END:SET -->
 <tr style="background-color:{'color'|cycle:'#B2FBCF':'#ffffff'}">
-	<td>{$nom} {$prenom}</td>
-	<td><!-- AGENT $f_email size=40 --></td>
+    <td>{$nom} {$prenom}</td>
+    <td><!-- AGENT $f_email size=40 --></td>
 </tr>
 <!-- END:LOOP -->
 </table>

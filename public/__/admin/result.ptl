@@ -12,21 +12,21 @@
 <div>
 <table>
 <tr>
-	<th></th>
-	<th></th>
+    <th></th>
+    <th></th>
 <!-- IF !$anonyme -->
-	<th>Nom</th>
+    <th>Nom</th>
 <!-- END:IF -->
 <!-- LOOP $ENTETE --><!-- IF $iteratorPosition --><th>{$entete}</th><!-- END:IF --><!-- END:LOOP -->
 </tr>
 <!-- LOOP $USER -->
 <tr style="background-color:{'color'|cycle:'#B2FBCF':'#ffffff'}">
-	<td><!-- AGENT $f_relance title="{$nom} {$prenom} - {$promo}" --></td>
-	<td align="center"><img src="{~}img/{$statut}.gif" title="{$statut}"> <!-- IF $bounced --><img src="{~}img/bounce.gif" title="Email en erreur"><!-- END:IF --></td>
-	<!-- IF !$$anonyme -->
-	<td>{$promo} {$nom} {$prenom}</td>
-	<!-- END:IF -->
-	<!-- LOOP $DATA --><td>{$VALUE|default:'&nbsp;'|nl2br}</td><!-- END:LOOP -->
+    <td><!-- AGENT $f_relance title="{$nom} {$prenom} - {$promo}" --></td>
+    <td align="center"><img src="{~}img/{$statut}.gif" title="{$statut}"> <!-- IF $bounced --><img src="{~}img/bounce.gif" title="Email en erreur"><!-- END:IF --></td>
+    <!-- IF !$$anonyme -->
+    <td>{$promo} {$nom} {$prenom}</td>
+    <!-- END:IF -->
+    <!-- LOOP $DATA --><td>{$VALUE|default:'&nbsp;'|nl2br}</td><!-- END:LOOP -->
 </tr>
 <!-- END:LOOP -->
 </table>

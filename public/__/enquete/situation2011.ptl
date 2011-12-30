@@ -1,35 +1,35 @@
-<!-- AGENT 'header' title = 'Enquête Situation 2011' --><style type="text/css"><!--
+<!-- AGENT 'header' title = 'Enquête Situation 2011' --><style><!--
 
 .required
 {
-	color: black;
+    color: black;
 }
 
 .errormsg
 {
-	font-style: italic;
+    font-style: italic;
 }
 
 span.errormsg
 {
-	padding-left: 10px;
-	position: absolute;
+    padding-left: 10px;
+    position: absolute;
 }
 
 .detail
 {
-	font-style: italic;
-	font-size: 70%;
+    font-style: italic;
+    font-size: 70%;
 }
 
 table, input.text, textarea
 {
-	width: 100%;
+    width: 100%;
 }
 
 td
 {
-	padding: 0;
+    padding: 0;
 }
 
 --></style>

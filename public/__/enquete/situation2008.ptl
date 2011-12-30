@@ -1,39 +1,39 @@
-<!-- AGENT 'header' title = 'Enquête Situation 2008' --><style type="text/css"><!--
+<!-- AGENT 'header' title = 'Enquête Situation 2008' --><style><!--
 
 .required
 {
-	color: black;
+    color: black;
 }
 
 .errormsg
 {
-	font-style: italic;
+    font-style: italic;
 }
 
 span.errormsg
 {
-	padding-left: 10px;
-	position: absolute;
+    padding-left: 10px;
+    position: absolute;
 }
 
 .detail
 {
-	font-style: italic;
-	font-size: 70%;
+    font-style: italic;
+    font-size: 70%;
 }
 
 input.text, textarea
 {
-	width: 100%;
+    width: 100%;
 }
 
 --></style>
 
 <!-- IF !$form -->
-Bienvenue sur l'enquête situation<br />
-Si vous souhaitez répondre à l'enquete vous devez utiliser<br />
-la clé personnelle qui vous a été envoyée par email<br />
-Si vous avez un problème, vous pouvez contacter le propriétaire de cette enquete<br />
+Bienvenue sur l'enquête situation<br>
+Si vous souhaitez répondre à l'enquete vous devez utiliser<br>
+la clé personnelle qui vous a été envoyée par email<br>
+Si vous avez un problème, vous pouvez contacter le propriétaire de cette enquete<br>
 <!-- ELSE -->
 <!-- AGENT $form _mode_='errormsg' -->
 
@@ -42,14 +42,14 @@ Si vous avez un problème, vous pouvez contacter le propriétaire de cette enque
 <!-- SET g$inputFormat --><tr><td>%0&nbsp;:</td><td>%1%2</td></tr><!-- END:SET -->
 
 <blockquote style="width: 600px">
-{$prenom} {$nom}, promotion {$promo}<br />
-{$email}<br />
-<br />
-<!-- AGENT $f_adresse              _caption_="Adresse(s) où l'on peut vous joindre" _format_='%0&nbsp;:<br />%1%2' rows=2 -->
+{$prenom} {$nom}, promotion {$promo}<br>
+{$email}<br>
+<br>
+<!-- AGENT $f_adresse              _caption_="Adresse(s) où l'on peut vous joindre" _format_='%0&nbsp;:<br>%1%2' rows=2 -->
 
 <h2>Situation actuelle</h2>
-<!-- AGENT $f_actif                _caption_="Avez-vous actuellement un emploi ?" _glue_='&nbsp;' _format_='%0<br />%1%2' --><br />
-<br />
+<!-- AGENT $f_actif                _caption_="Avez-vous actuellement un emploi ?" _glue_='&nbsp;' _format_='%0<br>%1%2' --><br>
+<br>
 <h3>Si oui, pouvez-vous répondre aux questions suivantes ?</h3>
 Si votre situation n'a pas changé depuis la dernière enquête, vous pouvez valider le formulaire.
 
@@ -79,19 +79,19 @@ Si votre situation n'a pas changé depuis la dernière enquête, vous pouvez val
 
 <h3>Si non :</h3>
 <blockquote>
-<!-- AGENT $f_etudiant             _caption_="Poursuivez-vous des études" _glue_='&nbsp;' _format_='%0&nbsp:%1%2' --><br />
-<br />
-Sinon, quelles difficultés principales rencontrez-vous dans votre recherche d'emploi ?<br />
+<!-- AGENT $f_etudiant             _caption_="Poursuivez-vous des études" _glue_='&nbsp;' _format_='%0&nbsp:%1%2' --><br>
+<br>
+Sinon, quelles difficultés principales rencontrez-vous dans votre recherche d'emploi ?<br>
 <!-- AGENT $f_difficulte  rows=6 style='overflow: visible' -->
 </blockquote>
 
 <h2>Historique</h2>
-Pouvez-vous retracer avec les dates les différentes étapes de votre parcours depuis votre sortie de l’Ecole : poursuite d’études ou formations complémentaires (quel type ?), recherche d’emploi, emploi effectif (type, profil, société) ?<br />
+Pouvez-vous retracer avec les dates les différentes étapes de votre parcours depuis votre sortie de l’Ecole : poursuite d’études ou formations complémentaires (quel type ?), recherche d’emploi, emploi effectif (type, profil, société) ?<br>
 <!-- AGENT $f_historique rows=6 style='overflow: visible' -->
 
 
 <h2>Remarques</h2>
-<!-- AGENT $f_remarque  rows=6 style='overflow: visible' --><br />
+<!-- AGENT $f_remarque  rows=6 style='overflow: visible' --><br>
 </br>
 <div align="right"><!-- AGENT $f_save value='Valider' --></div>
 </blockquote>

@@ -14,7 +14,7 @@
 </p>
 
 <p>
-<!-- AGENT $f_description _caption_="Descriptif de l'enquête" _format_='%0&nbsp;:<br />%1%2' rows=8 cols=60 -->
+<!-- AGENT $f_description _caption_="Descriptif de l'enquête" _format_='%0&nbsp;:<br>%1%2' rows=8 cols=60 -->
 </p>
 
 <!-- AGENT $f_save value='Enregistrer' _format_='%0%1%2' -->

@@ -1,15 +1,15 @@
 <?php
 
-class extends enquete
+class enquete_cnisf2008 extends enquete
 {
-	protected
+    protected
 
-	$link_template = 'cnisf2008/%s',
-	$thanks_template = 'cnisf2008/thanks/%s',
-	$email_footer = '';
+    $link_template = 'cnisf2008/%s',
+    $thanks_template = 'cnisf2008/thanks/%s',
+    $email_footer = '';
 
-	protected function setupForm($form, $save)
-	{
-		p::redirect('http://enquete.cnisf.org/cnisf2008/');
-	}
+    protected function setupForm($form, $save)
+    {
+        Patchwork::redirect('http://enquete.cnisf.org/cnisf2008/');
+    }
 }

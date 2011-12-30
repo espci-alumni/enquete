@@ -1,5 +1,5 @@
 <?php
 
-class extends agent_thanks
+class agent_cnisf2008_thanks extends agent_thanks
 {
 }

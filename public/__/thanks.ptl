@@ -1,25 +1,25 @@
 <!-- AGENT 'header' title="Merci" -->
 
-<style type="text/css">
+<style>
 li
 {
-	padding-bottom: 10px;
-	vertical-align: top;
+    padding-bottom: 10px;
+    vertical-align: top;
 }
 </style>
 
-<script type="text/javascript" src="{~}js/admin"></script >
+<script src="{~}js/admin"></script>
 
 <h2>Merci de votre participation</h2>
 
 <ul style="width: 500px;">
 <li>
-	<!-- IF 'enregistre' != $statut -->
-	Vous n'avez pas encore répondu à l'enquête.
-	<!-- ELSE -->
-	Tant que l'enquête n'est pas cloturée, vous pouvez encore modifier votre réponse.
-	<!-- END:IF -->
-	<a href="{~}{$user_key}">Cliquez ici ...</a>
+    <!-- IF 'enregistre' != $statut -->
+    Vous n'avez pas encore répondu à l'enquête.
+    <!-- ELSE -->
+    Tant que l'enquête n'est pas cloturée, vous pouvez encore modifier votre réponse.
+    <!-- END:IF -->
+    <a href="{~}{$user_key}">Cliquez ici...</a>
 </li>
 <li>
 Pour faciliter les enquêtes futures, pensez à <a href="{/}fr/auth" target="_blank">vous inscrire sur espci.org</a> et à mettre à jour votre adresse email universelle.
@@ -31,22 +31,22 @@ Pour faciliter les enquêtes futures, pensez à <a href="{/}fr/auth" target="_bl
 <!-- AGENT $form -->
 
 <fieldset><legend>Email manquants&nbsp;:</legend>
-Je n'ai pas l'email de ces PCéens. Si vous en connaissez certain, pouvez-vous les renseigner s'il vous plait ?<br />
-<br />
-Merci d'avance,<br />
-<br />
-{$owner}<br />
-<br />
+Je n'ai pas l'email de ces PCéens. Si vous en connaissez certain, pouvez-vous les renseigner s'il vous plait ?<br>
+<br>
+Merci d'avance,<br>
+<br>
+{$owner}<br>
+<br>
 <div style="height:300px;overflow:auto;width:100%">
 <table>
 <tr>
-	<th>Nom</th>
-	<th>Email</th>
+    <th>Nom</th>
+    <th>Email</th>
 </tr>
 <!-- LOOP $PC1 --><!-- SET a$a --><!-- END:SET -->
 <tr style="background-color:{'color'|cycle:'#B2FBCF':'#ffffff'}">
-	<td>{$nom} {$prenom}</td>
-	<td><!-- AGENT $f_email size=40 --></td>
+    <td>{$nom} {$prenom}</td>
+    <td><!-- AGENT $f_email size=40 --></td>
 </tr>
 <!-- END:LOOP -->
 </table>
@@ -60,7 +60,7 @@ Merci d'avance,<br />
 </fieldset>
 
 <p>
-<!-- AGENT $f_send value="Envoyer l'enquête aux adresses renseignées ..." onclick='return openSendbox(this)' -->
+<!-- AGENT $f_send value="Envoyer l'enquête aux adresses renseignées..." onclick='return openSendbox(this)' -->
 </p>
 </fieldset>
 
@@ -78,4 +78,4 @@ Merci d'avance,<br />
 Si vous n'êtes pas encore cotisant, nous avons besoin de vous pour supporter le projet espci.org. <a href="{/}fr/cotiser" target="_blank">Cliquez ici pour en savoir plus sur l'adhésion</a>.
 </li>
 </ul>
-<!-- AGENT 'footer' -->
+<-- AGENT 'footer' -->

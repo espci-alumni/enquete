@@ -1,5 +1,5 @@
 <?php
 
-class extends enquete_situation2008
+class enquete_situation2009 extends enquete_situation2008
 {
 }

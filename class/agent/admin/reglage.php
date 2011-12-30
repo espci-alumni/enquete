@@ -1,49 +1,49 @@
 <?php
 
-class extends agent_admin
+class agent_admin_reglage extends agent_admin
 {
-	function compose($o)
-	{
-		$o = $this->enquete;
+    function compose($o)
+    {
+        $o = $this->enquete;
 
-		$form = $this->form = new pForm($o);
+        $form = $this->form = new pForm($o);
 
-		$db = DB();
+        $db = DB();
 
-		$sql = 'SELECT * FROM admin_enquete WHERE enquete=?';
-		$defaults = $db->getRow($sql, null, array($o->enquete));
+        $sql = 'SELECT * FROM admin_enquete WHERE enquete=?';
+        $defaults = $db->getRow($sql, null, array($o->enquete));
 
-		if ($defaults) $form->setDefaults($defaults);
+        if ($defaults) $form->setDefaults($defaults);
 
-		$save = $form->add('submit', 'save');
-		$form->add('check', 'etat_enquete', array(
-			'item' => array('ouvert' => 'ouvert', 'ferme' => 'fermé')
-		));
-		$form->add('textarea', 'description');
-		$form->add('text', 'hors_delai', array('valid' => 'int', 1));
+        $save = $form->add('submit', 'save');
+        $form->add('check', 'etat_enquete', array(
+            'item' => array('ouvert' => 'ouvert', 'ferme' => 'fermé')
+        ));
+        $form->add('textarea', 'description');
+        $form->add('text', 'hors_delai', array('valid' => 'int', 1));
 
-		$save->attach(
-			'etat_enquete', "", "",
-			'description', "", "",
-			'hors_delai', "Préciser le délai d'expiration des clés hors délais", "Délai non valide"
-		);
+        $save->attach(
+            'etat_enquete', "", "",
+            'description', "", "",
+            'hors_delai', "Préciser le délai d'expiration des clés hors délais", "Délai non valide"
+        );
 
-		if ($save->isOn())
-		{
-			$this->save($save->getData());
-			p::redirect();
-		}
+        if ($save->isOn())
+        {
+            $this->save($save->getData());
+            Patchwork::redirect();
+        }
 
-		return $o;
-	}
+        return $o;
+    }
 
-	function save($data)
-	{
-		DB()->autoExecute(
-			'admin_enquete',
-			$data,
-			MDB2_AUTOQUERY_UPDATE,
-			"enquete='{$this->enquete->enquete}'"
-		);
-	}
+    function save($data)
+    {
+        DB()->autoExecute(
+            'admin_enquete',
+            $data,
+            MDB2_AUTOQUERY_UPDATE,
+            "enquete='{$this->enquete->enquete}'"
+        );
+    }
 }

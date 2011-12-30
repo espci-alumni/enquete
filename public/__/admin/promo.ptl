@@ -21,21 +21,21 @@
 <table>
 <!-- IF $etat_enquete == 'fermé' -->
 <tr>
-	<td colspan="2">
-	L'enquête est <b>fermée</b>.
-	Vous pouvez envoyer des clefs hors-délai.
-	Elle ne seront actives que pendant {$hors_delai} jours.
-	</td>
+    <td colspan="2">
+    L'enquête est <b>fermée</b>.
+    Vous pouvez envoyer des clefs hors-délai.
+    Elle ne seront actives que pendant {$hors_delai} jours.
+    </td>
 </tr>
 <!-- END:IF -->
 <tr>
-	<th>Nom</th>
-	<th>Email</th>
+    <th>Nom</th>
+    <th>Email</th>
 </tr>
 <!-- LOOP $PC1 --><!-- SET a$a --><!-- END:SET -->
 <tr style="background-color:{'color'|cycle:'#B2FBCF':'#ffffff'}">
-	<td>{$promo} {$nom} {$prenom}</td>
-	<td><!-- AGENT $f_email size=40 --></td>
+    <td>{$promo} {$nom} {$prenom}</td>
+    <td><!-- AGENT $f_email size=40 --></td>
 </tr>
 <!-- END:LOOP -->
 </table>
