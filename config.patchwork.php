@@ -1,8 +1,4 @@
 <?php
 
-$CONFIG += array(
-
-    'DSN' => PCORG::DSN('enquete'),
-    'clientside' => false,
-
-);
+$CONFIG += array('clientside' => false);
+$CONFIG += PCORG::DSN('enquete', 'doctrine.');

@@ -31,17 +31,16 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
 
         $o = $this->data;
 
-        $db->autoExecute(
+        $db->update(
             'admin_user',
             array('statut' => 'ouvert'),
-            MDB2_AUTOQUERY_UPDATE,
-            "statut='envoye' AND user_key=" . $db->quote($o->user_key)
+            array('statut' => 'envoye', 'user_key' => $o->user_key)
         );
 
         $form = new pForm($o);
 
         $sql = "SELECT * FROM enquete_{$o->enquete} WHERE result_id=" . $db->quote($o->result_id);
-        if ($defaults = $db->queryRow($sql)) $form->setDefaults($defaults);
+        if ($defaults = $db->fetchAssoc($sql)) $form->setDefaults($defaults);
 
         $save = $form->add('submit', 'save');
 
@@ -59,18 +58,16 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
         $db = DB();
         $o = $this->data;
 
-        $db->autoExecute(
+        $db->update(
             'admin_user',
             array('statut' => 'enregistre'),
-            MDB2_AUTOQUERY_UPDATE,
-            "statut='ouvert' AND user_key=" . $db->quote($o->user_key)
+            array('statut' => 'ouvert', 'user_key' => $o->user_key)
         );
 
-        $db->autoExecute(
+        $db->update(
             'enquete_' . $o->enquete,
             $o->f_save->getData(),
-            MDB2_AUTOQUERY_UPDATE,
-            'result_id=' . $o->result_id
+            array('result_id' => $o->result_id)
         );
     }
 
@@ -87,11 +84,10 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
         {
             // Mémorisation du dernier modèle utilisé
 
-            $db->autoExecute(
+            $db->update(
                 'admin_enquete',
                 array('subject' => $subject, 'template' => $body),
-                MDB2_AUTOQUERY_UPDATE,
-                "enquete='{$enquete->enquete}'"
+                array('enquete' => $enquete->enquete)
             );
         }
 
@@ -116,7 +112,7 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
                         AND REPLACE(prenom, "-", " ") = REPLACE(?, "-", " ")
                         AND promo = ?
                         AND enquete = ?';
-            if ( $result_id = $db->getOne($sql, null, array($nom, $prenom, $promo, $enquete->enquete)) )
+            if ( $result_id = $db->fetchColumn($sql, array($nom, $prenom, $promo, $enquete->enquete)) )
             {
                 $data['result_id'] = $result_id;
             }
@@ -124,7 +120,7 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
             {
                 $sql = "INSERT INTO enquete_{$enquete->enquete} (result_id) VALUES (0)";
                 $db->exec($sql);
-                $data['result_id'] = $db->lastInsertID();
+                $data['result_id'] = $db->lastInsertId();
             }
         }
 
@@ -140,9 +136,9 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
             // Génère la clef et enregistre l'action
 
             do $data['user_key'] = substr(Patchwork::strongid(), 0, 16);
-            while ($db->queryOne("SELECT 1 FROM admin_user WHERE user_key=" . $db->quote($data['user_key'])));
+            while ($db->fetchColumn("SELECT 1 FROM admin_user WHERE user_key=" . $db->quote($data['user_key'])));
 
-            $db->autoExecute('admin_user', $data);
+            $db->insert('admin_user', $data);
 
 
             // Envoi du mail au destinataire

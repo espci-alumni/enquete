@@ -29,9 +29,8 @@ class agent_index extends agent
                         OR
                         DATE_ADD(date_envoi, INTERVAL hors_delai DAY) > NOW()
                     )';
-        $o = $db->getRow($sql, null, array($user_key));
-
-        if (!$o) Patchwork::redirect('message/error/user_key');
+        $o = $db->fetchAssoc($sql, array($user_key)) or Patchwork::redirect('message/error/user_key');
+        $o = (object) $o;
 
         $template = 'enquete_' . $o->enquete;
         $enquete = new $template($o);

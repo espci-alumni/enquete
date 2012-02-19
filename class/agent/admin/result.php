@@ -20,7 +20,7 @@ class agent_admin_result extends agent_admin
         if (self::perPage)
         {
             $sql = "SELECT COUNT(*) FROM admin_user WHERE enquete='{$enquete}' GROUP BY result_id";
-            $o->numPages = ceil($db->getOne($sql) / self::perPage);
+            $o->numPages = ceil($db->fetchColumn($sql) / self::perPage);
 
             $o->page = min($this->get->p, $o->numPages) - 1;
         }
@@ -57,21 +57,21 @@ class agent_admin_result extends agent_admin
             foreach ($user as &$user)
             {
                 $sql = 'SELECT *
-                    FROM admin_user
-                    WHERE result_id=? AND enquete=?
-                    ORDER BY bounced, FIELD(statut, "enregistre", "ouvert", "envoye")';
-                if ($user = $db->getRow($sql, null, array($user, $enquete)))
+                        FROM admin_user
+                        WHERE result_id=? AND enquete=?
+                        ORDER BY bounced, FIELD(statut, "enregistre", "ouvert", "envoye")';
+                if ($user = $db->fetchAssoc($sql, array($user, $enquete)))
                 {
                     $this->save(array(
                         'subject' => $data['subject'],
                         'template' => $data['template'],
 
-                        'result_id' => $user->result_id,
-                        'promo' => $user->promo,
-                        'nom' => $user->nom,
-                        'prenom' => $user->prenom,
-                        'email' => $user->email,
-                        'source_key' => $user->source_key,
+                        'result_id' => $user['result_id'],
+                        'promo' => $user['promo'],
+                        'nom' => $user['nom'],
+                        'prenom' => $user['prenom'],
+                        'email' => $user['email'],
+                        'source_key' => $user['source_key'],
                     ));
                 }
             }

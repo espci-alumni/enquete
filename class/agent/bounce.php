@@ -8,11 +8,10 @@ class agent_bounce extends agent
     {
         if ($this->get->__1__)
         {
-            DB()->autoExecute(
+            DB()->update(
                 'admin_user',
                 array('bounced' => 1),
-                MDB2_AUTOQUERY_UPDATE,
-                "user_key=" . DB()->quote($this->get->__1__)
+                array('user_key' => $this->get->__1__)
             );
         }
     }

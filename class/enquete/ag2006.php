@@ -11,7 +11,7 @@ class enquete_ag2006 extends enquete
                 WHERE REPLACE(nom, "-", " ") = REPLACE(?, "-", " ")
                     AND REPLACE(prenom, "-", " ") = REPLACE(?, "-", " ")
                     AND promotion = ?';
-        $o->membre = (bool) DB()->getOne($sql, null, array($o->nom, $o->prenom, $o->promo));
+        $o->membre = (bool) DB()->fetchColumn($sql, array($o->nom, $o->prenom, $o->promo));
 
         $form->add('check', 'present', array('item' => array('oui' => 'oui', 'non' => 'non', 'blanc' => "je ne sais pas encore")));
         $form->add('check', 'conseil', array('item' => array('oui' => 'oui', 'non' => 'non', 'blanc' => "je m'abstiens")));

@@ -11,7 +11,7 @@ class agent_admin_reglage extends agent_admin
         $db = DB();
 
         $sql = 'SELECT * FROM admin_enquete WHERE enquete=?';
-        $defaults = $db->getRow($sql, null, array($o->enquete));
+        $defaults = $db->fetchAssoc($sql, array($o->enquete));
 
         if ($defaults) $form->setDefaults($defaults);
 
@@ -39,11 +39,10 @@ class agent_admin_reglage extends agent_admin
 
     function save($data)
     {
-        DB()->autoExecute(
+        DB()->update(
             'admin_enquete',
             $data,
-            MDB2_AUTOQUERY_UPDATE,
-            "enquete='{$this->enquete->enquete}'"
+            array('enquete' => $this->enquete->enquete)
         );
     }
 }

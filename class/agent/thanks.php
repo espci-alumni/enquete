@@ -20,12 +20,11 @@ class agent_thanks extends agent
                         OR
                         DATE_ADD(date_envoi, INTERVAL hors_delai DAY) > NOW()
                     )';
-        $o = $db->getRow($sql, null, array($this->get->__1__));
-
-        if (!$o) Patchwork::redirect('index');
+        $o = $db->fetchAssoc($sql, array($this->get->__1__)) or Patchwork::redirect('index');
+        $o = (object) $o;
 
         $sql = 'SELECT * FROM admin_enquete WHERE enquete=?';
-        $this->enquete = $db->getRow($sql, null, array($o->enquete));
+        $this->enquete = (object) $db->fetchAssoc($sql, array($o->enquete));
 
         $o->owner = $this->enquete->owner;
 

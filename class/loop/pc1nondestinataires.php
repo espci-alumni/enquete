@@ -34,7 +34,7 @@ class loop_pc1nondestinataires extends loop_sql
                         AND promo = ?
                         AND enquete = ?
                         AND NOT bounced';
-            if ($db->getOne($sql, null, array($data->nom, $data->prenom, $data->promo, $this->enquete))) return $this->next();
+            if ($db->fetchColumn($sql, null, array($data->nom, $data->prenom, $data->promo, $this->enquete))) return $this->next();
             else
             {
                 $name = 'pc' . $data->contact_id;

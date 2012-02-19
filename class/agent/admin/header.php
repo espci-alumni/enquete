@@ -18,7 +18,7 @@ class agent_admin_header extends agent
                     JOIN admin_user u USING (enquete)
                 WHERE owner_key=" . $db->quote($this->get->owner_key) . "
                 GROUP BY enquete";
-        if ($sql = $db->queryRow($sql)) $o = $sql;
+        if ($sql = $db->fetchAssoc($sql)) $o = (object) $sql;
 
         return $o;
     }
