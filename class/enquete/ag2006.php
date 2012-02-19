@@ -6,7 +6,7 @@ class enquete_ag2006 extends enquete
     {
         $o = $this->data;
 
-        $sql =  'SELECT 1
+        $sql = 'SELECT 1
                 FROM PCORG.system
                 WHERE REPLACE(nom, "-", " ") = REPLACE(?, "-", " ")
                     AND REPLACE(prenom, "-", " ") = REPLACE(?, "-", " ")

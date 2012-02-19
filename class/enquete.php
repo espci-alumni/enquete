@@ -181,7 +181,7 @@ Cette enquête est réalisée avec les moyens techniques d'espci.org
             );
 
             $body .= "\n_______________________________________________________________________";
-        
+
             if (false === strpos($body, $link)) $body .= "
 {$anonym}
 Pour répondre, merci de cliquer sur ce lien (réservé à {$data['prenom']} {$data['nom']}) :

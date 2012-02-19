@@ -5,7 +5,7 @@
 <div style="float: right; font-size: 10px;">
 <table>
 <tr>
-    <td>Messages envoyés : </td> 
+    <td>Messages envoyés : </td>
     <td align="right">{$nb_envoye}</td>
 </tr>
 <tr>
@@ -13,15 +13,15 @@
     <td align="right">{$nb_promo}</td>
 </tr>
 <tr>
-    <td>Personnes sondées : </td> 
+    <td>Personnes sondées : </td>
     <td align="right">{$nb_user}</td>
 </tr>
 <tr>
-    <td>Taux d'ouverture : </td> 
+    <td>Taux d'ouverture : </td>
     <td align="right">{'%d'|printf:100*$nb_ouvert/$nb_user}%</td>
 </tr>
 <tr>
-    <td>Taux de réponse : </td> 
+    <td>Taux de réponse : </td>
     <td align="right">{'%d'|printf:100*$nb_enregistre/$nb_user}%</td>
 </tr>
 </table>
